@@ -1,10 +1,27 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://TileDrawer.gd" type="Script" id=3]
 
 [node name="World" type="Node2D"]
-position = Vector2( 512, 605 )
+position = Vector2( 0, 608 )
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 560, -136 )
+
+[node name="Camera2D" type="Camera2D" parent="Player2"]
+position = Vector2( -1008, -696 )
+anchor_mode = 0
+current = true
+zoom = Vector2( 2, 2 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.5
+drag_margin_top = 0.5
+drag_margin_right = 0.5
+drag_margin_bottom = 0.5
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 4 )
@@ -15,6 +32,7 @@ cell_tile_origin = 1
 collision_layer = 8
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -2097150, 0, 0, -1572861, 0, 0, -1048574, 0, 0, -524287, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0 )
+tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0 )
+script = ExtResource( 3 )
 
-[node name="Player2" parent="." instance=ExtResource( 1 )]
+[connection signal="player_moved" from="Player2" to="TileMap" method="_on_player_moved"]
