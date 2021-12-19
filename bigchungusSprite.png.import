@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bigchungusSprite.png-e0613222216555a605ddf6b1c211a923.stex"
+path="res://.import/bigchungusSprite.png-ca72671a217b6b33f6290e9603be60bc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/bigchungusSprite.png"
-dest_files=[ "res://.import/bigchungusSprite.png-e0613222216555a605ddf6b1c211a923.stex" ]
+source_file="res://bigchungusSprite.png"
+dest_files=[ "res://.import/bigchungusSprite.png-ca72671a217b6b33f6290e9603be60bc.stex" ]
 
 [params]
 
