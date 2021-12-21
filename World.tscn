@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://TileDrawer.gd" type="Script" id=3]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=4]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
-[ext_resource path="res://HUD.gd" type="Script" id=6]
 
 [node name="World" type="Node2D"]
 position = Vector2( 0, 608 )
@@ -32,17 +31,26 @@ zoom = Vector2( 2, 2 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-drag_margin_left = 0.3
+smoothing_speed = 7.0
+drag_margin_left = 0.5
 drag_margin_top = 0.3
-drag_margin_right = 0.3
+drag_margin_right = 0.5
 drag_margin_bottom = 0.3
 editor_draw_drag_margin = true
 script = ExtResource( 4 )
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
-script = ExtResource( 6 )
 
 [connection signal="player_moved" from="Player2" to="TileMap" method="_on_player_moved"]
 [connection signal="player_moved" from="Player2" to="Camera2D" method="_on_Player2_player_moved"]
+[connection signal="restarted" from="Player2" to="TileMap" method="_on_Player2_restarted"]
+[connection signal="restarted" from="Player2" to="Camera2D" method="_on_Player2_restarted"]
+[connection signal="restarted" from="Player2" to="HUD" method="_on_Player2_restarted"]
+[connection signal="show_restart_button" from="Player2" to="HUD" method="_on_Player2_show_restart_button"]
+[connection signal="missed_next_tile" from="TileMap" to="Player2" method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="Camera2D" method="_on_TileMap_missed_next_tile"]
+[connection signal="missed_next_tile" from="TileMap" to="HUD" method="_on_TileMap_missed_next_tile"]
 [connection signal="update_counter" from="TileMap" to="HUD" method="_on_TileMap_update_counter"]
+[connection signal="restart_game" from="HUD" to="Player2" method="_on_HUD_restart_game"]
+[connection signal="start_game" from="HUD" to="Player2" method="_on_HUD_start_game"]
+[connection signal="start_game" from="HUD" to="Camera2D" method="_on_HUD_start_game"]
