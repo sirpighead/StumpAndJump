@@ -18,6 +18,6 @@ func _on_Player2_restarted(spawn) -> void:
 	
 
 
-func _on_HUD_start_game() -> void:
+func start_game() -> void:
 	set_v_drag_enabled(true)
 	set_h_drag_enabled(true)

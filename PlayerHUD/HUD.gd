@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-signal start_game
 signal restart_game
 signal mute
 
@@ -17,13 +16,8 @@ func _on_TileMap_missed_next_tile(_score) -> void:
 	$RestartButton.show()
 
 
-func _on_StartGame_pressed() -> void:
-	$StartGame.hide()
-	emit_signal("start_game")
-
 
 func _on_RestartButton_pressed() -> void:
-	$StartGame.show()
 	$EndMessage.hide()
 	$MoveCounter.set_text("0")
 	$Direction.set_text("R")

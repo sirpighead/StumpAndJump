@@ -76,8 +76,3 @@ texture = ExtResource( 9 )
 [connection signal="update_counter" from="TileMap" to="HUD" method="_on_TileMap_update_counter"]
 [connection signal="mute" from="HUD" to="MusicPlayer" method="_on_HUD_mute"]
 [connection signal="restart_game" from="HUD" to="PlayerBody" method="_on_HUD_restart_game"]
-[connection signal="restart_game" from="HUD" to="MusicPlayer" method="_on_HUD_restart_game"]
-[connection signal="start_game" from="HUD" to="." method="_on_HUD_start_game"]
-[connection signal="start_game" from="HUD" to="PlayerBody" method="_on_HUD_start_game"]
-[connection signal="start_game" from="HUD" to="PlayerCamera" method="_on_HUD_start_game"]
-[connection signal="start_game" from="HUD" to="MusicPlayer" method="_on_HUD_start_game"]
