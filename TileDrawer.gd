@@ -13,7 +13,7 @@ const LEFTV = Vector2(-1,-3)
 
 func _ready() -> void:
 	randomize()
-	curTile = Vector2(4,-1)
+	curTile = Vector2(3,-1)
 	stepCounter = 0
 	
 	# makes 25 random steps at the beginning
@@ -32,7 +32,7 @@ func _ready() -> void:
 			tileArray.append("l")
 
 
-func _on_player_moved(direction: String, _position) -> void:
+func _on_Player_moved(direction: String, _position) -> void:
 	var dir = randf()
 	if dir > .5:
 		var newSpot = curTile + RIGHTV
@@ -52,7 +52,7 @@ func _on_player_moved(direction: String, _position) -> void:
 		emit_signal("update_counter", stepCounter)
 
 
-func _on_Player2_restarted(spawn) -> void:
+func _on_Player_restarted(spawn) -> void:
 	clear()
 	for t in 7:
 		set_cell(t,-1, 0)
