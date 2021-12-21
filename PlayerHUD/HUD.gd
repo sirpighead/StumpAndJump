@@ -12,7 +12,7 @@ func _on_TileMap_update_counter(steps) -> void:
 	$MoveCounter.set_text(str(steps))
 
 
-func _on_TileMap_missed_next_tile() -> void:
+func _on_TileMap_missed_next_tile(_score) -> void:
 	$EndMessage.show()
 	$RestartButton.show()
 

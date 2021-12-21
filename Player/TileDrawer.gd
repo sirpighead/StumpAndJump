@@ -1,6 +1,6 @@
 extends TileMap
 
-signal missed_next_tile()
+signal missed_next_tile(score)
 signal update_counter(steps)
 
 var curTile
@@ -13,7 +13,7 @@ const LEFTV = Vector2(-1,-3)
 
 func _ready() -> void:
 	randomize()
-	curTile = Vector2(4,-1)
+	curTile = Vector2(3,-1)
 	stepCounter = 0
 	
 	# makes 25 random steps at the beginning
@@ -46,7 +46,7 @@ func _on_player_moved(direction: String, _position) -> void:
 		tileArray.append("l")
 	
 	if not direction == tileArray.pop_front():
-		emit_signal("missed_next_tile")
+		emit_signal("missed_next_tile", stepCounter)
 	else:
 		stepCounter += 1
 		emit_signal("update_counter", stepCounter)
