@@ -23,6 +23,8 @@ func _input(event: InputEvent) -> void:
 				newPos = position + RIGHTV
 				emit_signal("player_moved", direction, newPos)
 				position = newPos
+				
+				$Sprite.set_flip_h(false)
 			
 			else: 
 				direction = "l"
@@ -30,6 +32,7 @@ func _input(event: InputEvent) -> void:
 				emit_signal("player_moved", direction, newPos)
 				position = newPos
 				
+				$Sprite.set_flip_h(true)
 			
 			emit_signal("switched_direction", direction)
 		
@@ -39,8 +42,6 @@ func _input(event: InputEvent) -> void:
 			emit_signal("player_moved", direction, newPos)
 			position = newPos
 		
-	else:
-		emit_signal("show_restart_button")
 
 
 
@@ -51,8 +52,8 @@ func _on_TileMap_missed_next_tile() -> void:
 func _on_HUD_start_game() -> void:
 	started = true
 	self.position = spawnPoint
-	direction = "l"
-	newPos = position + LEFTV
+	direction = "r"
+	newPos = position + RIGHTV
 
 
 func _on_HUD_restart_game() -> void:
