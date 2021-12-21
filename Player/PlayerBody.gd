@@ -17,7 +17,7 @@ var newPos
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not falling:
-		if started and event.is_action_pressed("right"):
+		if started and event.is_action_pressed("switch"):
 			if direction == "l": 
 				direction = "r"
 				newPos = position + RIGHTV
@@ -35,7 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			emit_signal("switched_direction", direction)
 
 		
-		elif started and event.is_action_pressed("left"):
+		elif started and event.is_action_pressed("advance"):
 			if direction == "l": newPos = position + LEFTV
 			else: newPos = position + RIGHTV
 			emit_signal("player_moved", direction, newPos)
