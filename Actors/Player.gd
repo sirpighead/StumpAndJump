@@ -3,6 +3,7 @@ extends Actor
 signal player_moved(direction, position)
 signal show_restart_button
 signal restarted(spawn)
+signal switched_direction(dir)
 
 const RIGHTV = Vector2(128,-128)
 const LEFTV = Vector2(-128,-128)
@@ -10,17 +11,34 @@ const LEFTV = Vector2(-128,-128)
 onready var spawnPoint = position
 var falling = false
 var started = false
+var direction
+var newPos
 
 
 func _input(event: InputEvent) -> void:
 	if not falling:
-		if event.is_action_pressed("left"):
-			if started: emit_signal("player_moved", "l", position + LEFTV)
-			position += LEFTV
+		if started and event.is_action_pressed("left"):
+			if direction == "l": 
+				direction = "r"
+				newPos = position + RIGHTV
+				emit_signal("player_moved", direction, newPos)
+				position = newPos
 			
-		if event.is_action_pressed("right"):
-			if started: emit_signal("player_moved", "r", position + RIGHTV)
-			position += RIGHTV
+			else: 
+				direction = "l"
+				newPos = position + LEFTV
+				emit_signal("player_moved", direction, newPos)
+				position = newPos
+				
+			
+			emit_signal("switched_direction", direction)
+		
+		elif started and event.is_action_pressed("right"):
+			if direction == "l": newPos = position + LEFTV
+			else: newPos = position + RIGHTV
+			emit_signal("player_moved", direction, newPos)
+			position = newPos
+		
 	else:
 		emit_signal("show_restart_button")
 
@@ -33,6 +51,8 @@ func _on_TileMap_missed_next_tile() -> void:
 func _on_HUD_start_game() -> void:
 	started = true
 	self.position = spawnPoint
+	direction = "l"
+	newPos = position + LEFTV
 
 
 func _on_HUD_restart_game() -> void:

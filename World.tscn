@@ -47,6 +47,7 @@ script = ExtResource( 4 )
 [connection signal="restarted" from="Player2" to="Camera2D" method="_on_Player2_restarted"]
 [connection signal="restarted" from="Player2" to="HUD" method="_on_Player2_restarted"]
 [connection signal="show_restart_button" from="Player2" to="HUD" method="_on_Player2_show_restart_button"]
+[connection signal="switched_direction" from="Player2" to="HUD" method="_on_Player2_switched_direction"]
 [connection signal="missed_next_tile" from="TileMap" to="Player2" method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="Camera2D" method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="HUD" method="_on_TileMap_missed_next_tile"]

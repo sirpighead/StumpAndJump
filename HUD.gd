@@ -16,6 +16,7 @@ func _on_TileMap_missed_next_tile() -> void:
 
 func _on_StartGame_pressed() -> void:
 	$StartGame.hide()
+	
 	emit_signal("start_game")
 
 
@@ -26,8 +27,13 @@ func _on_Player2_show_restart_button() -> void:
 func _on_RestartButton_pressed() -> void:
 	$StartGame.show()
 	$MoveCounter.set_text("0")
+	$Direction.set_text("L")
 	emit_signal("restart_game")
 
 
 func _on_Player2_restarted(spawn) -> void:
 	$RestartButton.hide()
+
+
+func _on_Player2_switched_direction(dir) -> void:
+	$Direction.set_text(dir.to_upper())
