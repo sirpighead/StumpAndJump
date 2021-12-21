@@ -42,17 +42,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			position = newPos
 		
 
-
-
-func _on_TileMap_missed_next_tile(_score) -> void:
-	falling = true
-
-
 func start_game() -> void:
 	started = true
 	self.position = spawnPoint
 	direction = "r"
 	newPos = position + RIGHTV
+
+
+func _on_TileMap_missed_next_tile(_score) -> void:
+	falling = true
 
 
 func _on_HUD_restart_game() -> void:
@@ -62,3 +60,13 @@ func _on_HUD_restart_game() -> void:
 	falling = false
 	$Sprite.set_flip_h(false)
 	emit_signal("restarted", spawnPoint)
+
+
+func _on_TileMap_orient_player(direction) -> void:
+	self.direction = direction
+	if self.direction == "r": 
+		$Sprite.set_flip_h(false)
+		newPos = position + RIGHTV
+	else: 
+		$Sprite.set_flip_h(true)
+		newPos = position + LEFTV

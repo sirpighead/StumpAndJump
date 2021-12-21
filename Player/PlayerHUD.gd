@@ -20,7 +20,6 @@ func _on_TileMap_missed_next_tile(_score) -> void:
 func _on_RestartButton_pressed() -> void:
 	$EndMessage.hide()
 	$MoveCounter.set_text("0")
-	$Direction.set_text("R")
 	emit_signal("restart_game")
 
 
@@ -34,3 +33,7 @@ func _on_Player2_switched_direction(dir) -> void:
 
 func _on_MuteButton_pressed() -> void:
 	emit_signal("mute")
+
+
+func _on_TileMap_orient_player(direction) -> void:
+	$Direction.set_text(direction.to_upper())
