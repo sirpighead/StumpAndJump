@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://TileDrawer.gd" type="Script" id=3]
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=4]
-[ext_resource path="res://MoveCounter.gd" type="Script" id=5]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://HUD.gd" type="Script" id=6]
 
 [node name="World" type="Node2D"]
 position = Vector2( 0, 608 )
@@ -38,20 +39,10 @@ drag_margin_bottom = 0.3
 editor_draw_drag_margin = true
 script = ExtResource( 4 )
 
-[node name="MoveCounter" type="Label" parent="."]
-margin_left = -216.0
-margin_top = -568.0
-margin_right = -72.0
-margin_bottom = -498.0
-text = "0"
-align = 1
-valign = 1
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+script = ExtResource( 6 )
 
 [connection signal="player_moved" from="Player2" to="TileMap" method="_on_player_moved"]
 [connection signal="player_moved" from="Player2" to="Camera2D" method="_on_Player2_player_moved"]
 [connection signal="missed_next_tile" from="TileMap" to="Camera2D" method="_on_TileMap_missed_next_tile"]
-[connection signal="update_counter" from="TileMap" to="MoveCounter" method="_on_TileMap_update_counter"]
+[connection signal="update_counter" from="TileMap" to="HUD" method="_on_TileMap_update_counter"]
