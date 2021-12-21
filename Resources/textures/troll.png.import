@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/troll.png-15b91d5e611f5bac9a17a3f9adaa7c79.image"
+
+[deps]
+
+source_file="res://Resources/textures/troll.png"
+dest_files=[ "res://.import/troll.png-15b91d5e611f5bac9a17a3f9adaa7c79.image" ]
+
+[params]
+

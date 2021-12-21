@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Actor",
 "language": "GDScript",
-"path": "res://Actors/actor.gd"
+"path": "res://Player/actor.gd"
 }, {
 "base": "HBoxContainer",
 "class": "ContributorClass",
@@ -51,6 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="StumpAndJump"
+run/main_scene="res://World/World.tscn"
 config/icon="res://icon.png"
 
 [gdnative]
@@ -74,10 +75,17 @@ left={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="other players"
+2d_physics/layer_3="coins"
+2d_physics/layer_4="tiles"
+
 [physics]
 
 common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Resources/textures/default_env.tres"
