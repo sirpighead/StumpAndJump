@@ -58,6 +58,11 @@ config/icon="res://icon.png"
 
 Main="*res://World/Main.gd"
 
+[display]
+
+window/size/width=800
+window/size/height=1024
+
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
