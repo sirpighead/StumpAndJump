@@ -2,6 +2,7 @@ extends TileMap
 
 signal missed_next_tile(score)
 signal update_counter(steps)
+signal orient_player(direction)
 
 var curTile
 var tileArray
@@ -56,5 +57,5 @@ func _on_Player2_restarted(spawn) -> void:
 	clear()
 	for t in 7:
 		set_cell(t,-1, 0)
-	
 	_ready()
+	emit_signal("orient_player", tileArray.front())
