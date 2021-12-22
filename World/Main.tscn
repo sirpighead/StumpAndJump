@@ -13,5 +13,5 @@ script = ExtResource( 2 )
 
 [connection signal="start_game" from="Player" to="." method="_on_Player_start_game"]
 [connection signal="update_highscore" from="Player" to="." method="_on_Player_update_highscore"]
-[connection signal="start_game" from="MainHUD" to="Player" method="_on_MainHUD_start_game"]
 [connection signal="start_game" from="MainHUD" to="." method="_on_MainHUD_start_game"]
+[connection signal="start_game" from="MainHUD" to="Player" method="_on_MainHUD_start_game"]
