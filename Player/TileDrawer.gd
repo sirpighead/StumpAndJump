@@ -31,6 +31,8 @@ func _ready() -> void:
 			set_cellv(newSpot, 0)
 			curTile = newSpot
 			tileArray.append("l")
+			
+	emit_signal("orient_player", tileArray.front())
 
 
 func _on_player_moved(direction: String, _position) -> void:
@@ -58,4 +60,3 @@ func _on_Player2_restarted(spawn) -> void:
 	for t in 7:
 		set_cell(t,-1, 0)
 	_ready()
-	emit_signal("orient_player", tileArray.front())

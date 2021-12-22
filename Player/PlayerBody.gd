@@ -45,8 +45,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func start_game() -> void:
 	started = true
 	self.position = spawnPoint
-	direction = "r"
-	newPos = position + RIGHTV
 
 
 func _on_TileMap_missed_next_tile(_score) -> void:

@@ -34,14 +34,14 @@ __meta__ = {
 }
 
 [node name="StartGame" type="Button" parent="Control"]
-anchor_left = 0.086
-anchor_top = 0.267
-anchor_right = 0.281
-anchor_bottom = 0.387
-margin_left = 404.56
-margin_top = 333.32
-margin_right = 572.76
-margin_bottom = 388.52
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 284.0
+margin_top = 428.0
+margin_right = 460.0
+margin_bottom = 488.0
 custom_fonts/font = SubResource( 2 )
 text = "Start Game"
 __meta__ = {
