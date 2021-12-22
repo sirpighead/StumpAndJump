@@ -11,13 +11,7 @@ script = ExtResource( 2 )
 
 [node name="MainHUD" parent="." instance=ExtResource( 3 )]
 
+[connection signal="start_game" from="Player" to="." method="_on_Player_start_game"]
 [connection signal="update_highscore" from="Player" to="." method="_on_Player_update_highscore"]
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-[connection signal="update_highscore" from="Player" to="MainHUD" method="_on_Player_update_highscore"]
-=======
->>>>>>> 039cc35cbbe68e8feac1fa2ecd453be86bd1c150
->>>>>>> Stashed changes
 [connection signal="start_game" from="MainHUD" to="Player" method="_on_MainHUD_start_game"]
 [connection signal="start_game" from="MainHUD" to="." method="_on_MainHUD_start_game"]

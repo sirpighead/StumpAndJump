@@ -28,13 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-process/normal_map_invert_y=false
-=======
->>>>>>> 039cc35cbbe68e8feac1fa2ecd453be86bd1c150
->>>>>>> Stashed changes
 stream=false
 size_limit=0
 detect_3d=true
