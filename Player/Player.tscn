@@ -47,7 +47,7 @@ script = ExtResource( 4 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -21.092
+volume_db = -25.0
 script = ExtResource( 6 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -73,5 +73,6 @@ texture = ExtResource( 9 )
 [connection signal="orient_player" from="TileMap" to="PlayerBody" method="_on_TileMap_orient_player"]
 [connection signal="orient_player" from="TileMap" to="HUD" method="_on_TileMap_orient_player"]
 [connection signal="update_counter" from="TileMap" to="HUD" method="_on_TileMap_update_counter"]
+[connection signal="change_volume" from="HUD" to="MusicPlayer" method="_on_HUD_change_volume"]
 [connection signal="mute" from="HUD" to="MusicPlayer" method="_on_HUD_mute"]
 [connection signal="restart_game" from="HUD" to="PlayerBody" method="_on_HUD_restart_game"]
