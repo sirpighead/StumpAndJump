@@ -56,10 +56,9 @@ script = ExtResource( 6 )
 motion_scale = Vector2( 0.2, 0.2 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -696, -3056 )
+position = Vector2( 0, -1016 )
 scale = Vector2( 16, 16 )
 texture = ExtResource( 9 )
-centered = false
 
 [connection signal="player_moved" from="PlayerBody" to="TileMap" method="_on_player_moved"]
 [connection signal="player_moved" from="PlayerBody" to="PlayerCamera" method="_on_Player2_player_moved"]
