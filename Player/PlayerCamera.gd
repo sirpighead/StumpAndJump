@@ -14,7 +14,9 @@ func _on_Player2_restarted(spawn) -> void:
 	set_v_drag_enabled(false)
 	set_h_drag_enabled(false)
 	falling = false
+	set_enable_follow_smoothing(false)
 	self.position = spawn
+	set_enable_follow_smoothing(true)
 	
 
 

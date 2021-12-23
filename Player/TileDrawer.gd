@@ -21,7 +21,7 @@ func _ready() -> void:
 	tileArray = []
 	for n in 15:
 		var dir = randf()
-		var tile = randi() % 4 + 5
+		var tile = randi() % 4
 		if dir > .5:
 			var newSpot = curTile + RIGHTV
 			set_cellv(newSpot, tile)
@@ -38,7 +38,7 @@ func _ready() -> void:
 
 func _on_player_moved(direction: String, _position) -> void:
 	var dir = randf()
-	var tile = randi() % 4 + 5
+	var tile = randi() % 4
 	if dir > .5:
 		var newSpot = curTile + RIGHTV
 		set_cellv(newSpot, tile)
@@ -60,5 +60,6 @@ func _on_player_moved(direction: String, _position) -> void:
 func _on_Player2_restarted(spawn) -> void:
 	clear()
 	for t in 7:
-		set_cell(t,-1, 0)
+		var tile = randi() % 4
+		set_cell(t,-1, tile)
 	_ready()
