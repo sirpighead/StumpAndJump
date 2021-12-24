@@ -33,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				$Sprite.set_flip_h(true)
 			
 			emit_signal("switched_direction", direction)
+			
 
 		
 		elif started and event.is_action_pressed("advance"):
@@ -40,7 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			else: newPos = position + RIGHTV
 			emit_signal("player_moved", direction, newPos)
 			position = newPos
-		
+			
 
 func start_game() -> void:
 	started = true
