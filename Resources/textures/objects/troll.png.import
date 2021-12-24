@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stage1tiles.png-2c19b455f221af00807f4f9d48c66ea1.stex"
+path="res://.import/troll.png-8a60e1d362998e97833f78355050e6e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/textures/stage1tiles.png"
-dest_files=[ "res://.import/stage1tiles.png-2c19b455f221af00807f4f9d48c66ea1.stex" ]
+source_file="res://Resources/textures/objects/troll.png"
+dest_files=[ "res://.import/troll.png-8a60e1d362998e97833f78355050e6e3.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
-svg/scale=1.0
+detect_3d=false
+svg/scale=0.001

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stage1background.png-3dd279e2c36e2eb04e4d86cf50ee430f.stex"
+path="res://.import/bigchungusSprite.png-e4860e9b06ce75a6f0444e7ff2bfe5a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/textures/stage1background.png"
-dest_files=[ "res://.import/stage1background.png-3dd279e2c36e2eb04e4d86cf50ee430f.stex" ]
+source_file="res://Resources/textures/objects/bigchungusSprite.png"
+dest_files=[ "res://.import/bigchungusSprite.png-e4860e9b06ce75a6f0444e7ff2bfe5a4.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

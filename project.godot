@@ -97,4 +97,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://Resources/textures/default_env.tres"
+environment/default_environment="res://Resources/textures/backgrounds/default_env.tres"
