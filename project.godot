@@ -51,12 +51,12 @@ _global_script_class_icons={
 [application]
 
 config/name="StumpAndJump"
-run/main_scene="res://World/Main.tscn"
+run/main_scene="res://SinglePlayerWorld/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Main="*res://World/Main.gd"
+Main="*res://SinglePlayerWorld/Main.gd"
 
 [display]
 
