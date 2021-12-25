@@ -22,7 +22,7 @@ func _ready() -> void:
 	curTile = startTile
 	stepCounter = 0
 	
-	# makes 25 random steps at the beginning
+	# makes 15 random steps at the beginning
 	tileArray = []
 	for n in 15:
 		place_randomized_tile()

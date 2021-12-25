@@ -41,7 +41,6 @@ script = ExtResource( 3 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 448, -112 )
-current = true
 zoom = Vector2( 1.8, 1.8 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -131,5 +130,6 @@ volume_db = -10.0
 [connection signal="orient_player" from="TileMap" to="HUD" method="_on_TileMap_orient_player"]
 [connection signal="update_counter" from="TileMap" to="HUD" method="_on_TileMap_update_counter"]
 [connection signal="change_volume" from="HUD" to="MusicPlayer" method="_on_HUD_change_volume"]
+[connection signal="exit_game" from="HUD" to="." method="_on_HUD_exit_game"]
 [connection signal="mute" from="HUD" to="MusicPlayer" method="_on_HUD_mute"]
 [connection signal="restart_game" from="HUD" to="PlayerBody" method="_on_HUD_restart_game"]
