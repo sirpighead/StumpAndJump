@@ -10,7 +10,7 @@
 [ext_resource path="res://Player/PlayerScene.gd" type="Script" id=8]
 [ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=9]
 [ext_resource path="res://Player/frontclouds.gd" type="Script" id=10]
-[ext_resource path="res://Resources/textures/backgrounds/stage1frontcloudstill.png" type="Texture" id=11]
+[ext_resource path="res://Resources/textures/backgrounds/finalfrontclouds.png" type="Texture" id=11]
 [ext_resource path="res://Player/backclouds.gd" type="Script" id=12]
 [ext_resource path="res://Resources/textures/backgrounds/stage1backstill.png" type="Texture" id=13]
 [ext_resource path="res://Player/sfx.gd" type="Script" id=14]
@@ -63,7 +63,7 @@ startAt = 0.0
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.15, 0.15 )
+motion_scale = Vector2( 0.15, 0.2 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/sky"]
 position = Vector2( 0, -576 )
@@ -71,24 +71,24 @@ scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 9 )
 
 [node name="backclouds" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 0.2 )
+motion_scale = Vector2( 0.15, 0.3 )
 motion_mirroring = Vector2( 2550, 0 )
 script = ExtResource( 12 )
 CLOUD_SPEED = -10.0
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/backclouds"]
-position = Vector2( 0, -1320 )
-scale = Vector2( 2.5, 2.2 )
+position = Vector2( 2.84217e-14, -1272 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 13 )
 
 [node name="frontclouds" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.4, 0.4 )
-motion_mirroring = Vector2( 3060, 0 )
+motion_scale = Vector2( 0.15, 0.35 )
+motion_mirroring = Vector2( 8224, 0 )
 script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/frontclouds"]
-position = Vector2( 0, -1288 )
-scale = Vector2( 3, 4 )
+position = Vector2( 2760, -1856 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 11 )
 
 [node name="sfx" type="Node2D" parent="."]
