@@ -14,7 +14,7 @@ func _ready() -> void:
 func start_game():
 	$Control/RestartButton.hide()
 	$Control/EndMessage.hide()
-	$Control/Settings.hide()
+	$Control/Settings/Controlpanel.hide()
 	$Control/Settings.hide()
 	$Control.show()
 
@@ -57,6 +57,8 @@ func _on_TextureButton_pressed() -> void:
 	if settings_showing: 
 		$Control/Settings.show()
 	else: 
+		if $Control/Settings/Controlpanel.is_visible_in_tree():
+			$Control/Settings/Controlpanel.hide()
 		$Control/Settings.hide()
 
 
@@ -68,5 +70,14 @@ func _on_VolumeSlider_value_changed(value: float) -> void:
 
 func _on_XButton_pressed() -> void:
 	emit_signal("restart_game")
+	if $Control/Settings/Controlpanel.is_visible_in_tree():
+		$Control/Settings/Controlpanel.hide()
 	$Control.hide()
 	emit_signal("exit_game")
+
+
+func _on_ShowInputs_pressed() -> void:
+	if !$Control/Settings/Controlpanel.is_visible_in_tree():
+		$Control/Settings/Controlpanel.show()
+	else:
+		$Control/Settings/Controlpanel.hide()

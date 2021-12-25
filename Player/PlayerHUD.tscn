@@ -1,14 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/PlayerHUD.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Resources/textures/objects/settings_icon.png" type="Texture" id=3]
 [ext_resource path="res://Resources/fonts/xolonium/xolonium-fonts-4.1/ttf/Xolonium-Bold.ttf" type="DynamicFontData" id=4]
-
-[sub_resource type="DynamicFont" id=6]
-size = 19
-extra_spacing_bottom = 7
-font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -46,61 +41,6 @@ margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="InputRemapper" type="Control" parent="Control"]
-visible = false
-anchor_left = 0.25
-anchor_top = 0.213
-anchor_right = 0.75
-anchor_bottom = 0.747
-margin_left = 190.0
-margin_top = 209.792
-margin_right = 190.0
-margin_bottom = 209.392
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OpenMenuButton" type="Button" parent="Control/InputRemapper"]
-anchor_top = 0.025
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 592.0
-margin_top = -72.0
-margin_right = 248.0
-margin_bottom = -348.0
-custom_fonts/font = SubResource( 6 )
-text = "Change Keybinds..."
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="KeyMapMenu" type="GridContainer" parent="Control/InputRemapper"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SwitchKeyBind" type="Button" parent="Control/InputRemapper/KeyMapMenu"]
-margin_right = 12.0
-margin_bottom = 20.0
-
-[node name="SwitchLabel" type="Label" parent="Control/InputRemapper/KeyMapMenu"]
-margin_top = 24.0
-margin_right = 12.0
-margin_bottom = 38.0
-
-[node name="AdvanceKeyBind" type="Button" parent="Control/InputRemapper/KeyMapMenu"]
-margin_top = 42.0
-margin_right = 12.0
-margin_bottom = 62.0
-
-[node name="AdvanceLabel" type="Label" parent="Control/InputRemapper/KeyMapMenu"]
-margin_top = 66.0
-margin_right = 12.0
-margin_bottom = 80.0
 
 [node name="MoveCounter" type="Label" parent="Control"]
 anchor_left = 0.5
@@ -165,6 +105,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SettingsButton" type="TextureButton" parent="Control"]
+margin_left = 737.0
+margin_right = 801.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 8
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
 [node name="Settings" type="VBoxContainer" parent="Control"]
 margin_left = 576.0
 margin_top = 64.0
@@ -185,17 +138,17 @@ alignment = 2
 
 [node name="ExitLabel" type="Label" parent="Control/Settings/ExitRow"]
 margin_top = 2.0
-margin_right = 175.0
+margin_right = 190.0
 margin_bottom = 16.0
 grow_horizontal = 0
-rect_min_size = Vector2( 175, 0 )
+rect_min_size = Vector2( 190, 0 )
 size_flags_horizontal = 2
 size_flags_stretch_ratio = 3.0
 text = "Exit"
 
 [node name="XButton" type="Button" parent="Control/Settings/ExitRow"]
-margin_left = 179.0
-margin_right = 204.0
+margin_left = 194.0
+margin_right = 219.0
 margin_bottom = 18.0
 size_flags_horizontal = 2
 custom_fonts/font = SubResource( 7 )
@@ -220,17 +173,16 @@ margin_bottom = 82.0
 margin_right = 90.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 90, 0 )
-size_flags_horizontal = 9
+size_flags_horizontal = 2
 size_flags_vertical = 1
 text = "Volume: 50"
 align = 1
 
 [node name="VolumeSlider" type="HSlider" parent="Control/Settings/VolumeRow"]
-margin_left = 94.0
-margin_right = 214.0
+margin_left = 101.0
+margin_right = 225.0
 margin_bottom = 16.0
-grow_horizontal = 0
-rect_min_size = Vector2( 120, 16 )
+rect_min_size = Vector2( 124, 16 )
 size_flags_horizontal = 8
 size_flags_vertical = 1
 value = 60.0
@@ -238,21 +190,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SettingsButton" type="TextureButton" parent="Control"]
-margin_left = 737.0
-margin_right = 801.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+[node name="ShowInputs" type="Button" parent="Control/Settings"]
+margin_left = 148.0
+margin_top = 86.0
+margin_right = 225.0
+margin_bottom = 106.0
 size_flags_horizontal = 8
-texture_normal = ExtResource( 3 )
-expand = true
+text = "Controls..."
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
+[node name="Controlpanel" type="PanelContainer" parent="Control/Settings"]
+margin_top = 110.0
+margin_right = 225.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 225, 50 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Settings/Controlpanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 218.0
+margin_bottom = 43.0
+alignment = 1
+
+[node name="Switch" type="Label" parent="Control/Settings/Controlpanel/VBoxContainer"]
+margin_top = 2.0
+margin_right = 211.0
+margin_bottom = 16.0
+text = "Switch:    Left Click, Q, Space"
+
+[node name="Adv" type="Label" parent="Control/Settings/Controlpanel/VBoxContainer"]
+margin_top = 20.0
+margin_right = 211.0
+margin_bottom = 34.0
+text = "Advance: Right Click, E, Up Arrow"
+
 [connection signal="pressed" from="Control/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Control/SettingsButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="Control/Settings/ExitRow/XButton" to="." method="_on_XButton_pressed"]
 [connection signal="pressed" from="Control/Settings/MuteButton" to="." method="_on_MuteButton_pressed"]
 [connection signal="value_changed" from="Control/Settings/VolumeRow/VolumeSlider" to="." method="_on_VolumeSlider_value_changed"]
-[connection signal="pressed" from="Control/SettingsButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Control/Settings/ShowInputs" to="." method="_on_ShowInputs_pressed"]
