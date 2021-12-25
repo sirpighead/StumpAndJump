@@ -1,32 +1,38 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=1]
-[ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://MainMenu/JoinScreen.gd" type="Script" id=2]
+[ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=3]
+[ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 1020, 1280 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
 extra_spacing_bottom = 16
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 27
 extra_spacing_bottom = 12
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 41
+extra_spacing_top = -16
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 40
 extra_spacing_bottom = 9
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -41,6 +47,7 @@ __meta__ = {
 }
 
 [node name="HostLobby" type="Control" parent="."]
+visible = false
 margin_right = 800.0
 margin_bottom = 1024.0
 __meta__ = {
@@ -85,9 +92,83 @@ anchor_top = 0.961
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -32.0
-margin_top = -280.064
-margin_right = 24.0
-margin_bottom = -280.0
+margin_top = -160.064
+margin_right = 33.0
+margin_bottom = -149.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 4 )
+text = "Back"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinScreen" type="Control" parent="."]
+visible = false
+margin_right = 800.0
+margin_bottom = 1024.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JoinGameButton" type="Button" parent="JoinScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = 112.0
+margin_right = 160.0
+margin_bottom = 182.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 3 )
+text = "Enter Server Info"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IPInput" type="LineEdit" parent="JoinScreen"]
+margin_left = 152.0
+margin_top = 315.0
+margin_right = 648.0
+margin_bottom = 376.0
+grow_vertical = 0
+custom_fonts/font = SubResource( 5 )
+align = 1
+placeholder_text = "IP Address..."
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortInput" type="LineEdit" parent="JoinScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -131.0
+margin_top = -56.0
+margin_right = 131.0
+margin_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_fonts/font = SubResource( 5 )
+align = 1
+placeholder_text = "Port..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="JoinScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = 280.0
+margin_right = 33.0
+margin_bottom = 331.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 4 )
 text = "Back"
@@ -138,4 +219,10 @@ __meta__ = {
 
 [connection signal="pressed" from="HostLobby/SoloButton" to="." method="_on_SoloButton_pressed"]
 [connection signal="pressed" from="HostLobby/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="netInfoFilled" from="JoinScreen" to="." method="_on_JoinScreen_netInfoFilled"]
+[connection signal="text_entered" from="JoinScreen/IPInput" to="JoinScreen" method="_on_IPInput_text_entered"]
+[connection signal="text_entered" from="JoinScreen/PortInput" to="JoinScreen" method="_on_PortInput_text_entered"]
+[connection signal="pressed" from="JoinScreen/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="JoinScreen/BackButton" to="JoinScreen" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="TitleScreen/HostButton" to="." method="_on_HostButton_pressed"]
+[connection signal="pressed" from="TitleScreen/JoinButton" to="." method="_on_JoinButton_pressed"]

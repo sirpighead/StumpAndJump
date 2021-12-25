@@ -87,8 +87,8 @@ motion_mirroring = Vector2( 8224, 0 )
 script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/frontclouds"]
-position = Vector2( 2760, -1856 )
-scale = Vector2( 2, 2 )
+position = Vector2( 2752, -1920 )
+scale = Vector2( 2, 2.2 )
 texture = ExtResource( 11 )
 
 [node name="sfx" type="Node2D" parent="."]
