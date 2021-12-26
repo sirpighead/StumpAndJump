@@ -13,7 +13,7 @@ func _on_BackButton_pressed() -> void:
 
 func _on_PortInput_text_entered(new_text: String) -> void:
 	if network_info.size() == 1: 
-		network_info.append(new_text)
+		network_info.append(int(new_text))
 		emit_signal("netInfoFilled", network_info)
 
 

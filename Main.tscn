@@ -251,11 +251,13 @@ __meta__ = {
 }
 
 [connection signal="host" from="MainMenu" to="." method="_on_MainMenu_host"]
+[connection signal="join" from="MainMenu" to="." method="_on_MainMenu_join"]
 [connection signal="start_singleplayer" from="MainMenu" to="." method="_on_MainMenu_start_singleplayer"]
 [connection signal="pressed" from="MainMenu/HostLobby/SoloButton" to="MainMenu" method="_on_SoloButton_pressed"]
 [connection signal="pressed" from="MainMenu/HostLobby/HostGameButton" to="MainMenu" method="_on_HostGameButton_pressed"]
 [connection signal="pressed" from="MainMenu/HostLobby/BackButton" to="MainMenu" method="_on_BackButton_pressed"]
 [connection signal="netInfoFilled" from="MainMenu/JoinScreen" to="MainMenu" method="_on_JoinScreen_netInfoFilled"]
+[connection signal="pressed" from="MainMenu/JoinScreen/JoinGameButton" to="MainMenu" method="_on_JoinGameButton_pressed"]
 [connection signal="text_entered" from="MainMenu/JoinScreen/IPInput" to="MainMenu/JoinScreen" method="_on_IPInput_text_entered"]
 [connection signal="text_entered" from="MainMenu/JoinScreen/PortInput" to="MainMenu/JoinScreen" method="_on_PortInput_text_entered"]
 [connection signal="pressed" from="MainMenu/JoinScreen/BackButton" to="MainMenu" method="_on_BackButton_pressed"]
