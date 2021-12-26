@@ -11,11 +11,13 @@ var high_score = 0
 func _ready() -> void:
 #	print("player loaded")
 	if not get_tree().get_network_peer() == null:
+		var this_peer = get_tree().network_peer
 		if get_tree().is_network_server():
 			print("Server created!")
 			game_mode = "hosting"
 		else:
 			print("Client Created!")
+			print(Main.players)
 			game_mode = "connecting"
 	
 	start_game()
@@ -31,7 +33,8 @@ func start_game() -> void:
 
 func _on_HUD_exit_game() -> void:
 	$MusicPlayer.stop()
-	if game_mode == "hosting":
+	if not get_tree().get_network_peer() == null:
+		get_tree().network_peer.close_connection()
 		get_tree().network_peer = null
 	get_tree().change_scene("res://Main.tscn")
 
