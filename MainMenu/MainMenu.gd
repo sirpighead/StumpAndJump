@@ -1,10 +1,13 @@
 extends Control
 
 signal start_singleplayer
+signal host
 
 var network_info = []
+var main_node
 
 func _ready() -> void:
+#	print("menu loaded")
 	$HostLobby.hide()
 	$JoinScreen.hide()
 	$TitleScreen.show()
@@ -36,3 +39,8 @@ func _on_JoinButton_pressed() -> void:
 func _on_JoinScreen_netInfoFilled(net_info) -> void:
 	$JoinScreen/JoinGameButton.set_flat(false)
 	network_info = net_info
+
+
+func _on_HostGameButton_pressed() -> void:
+	emit_signal("host")
+	hide()

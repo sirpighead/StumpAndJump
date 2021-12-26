@@ -4,8 +4,10 @@ signal restart_game
 signal mute
 signal change_volume(volume)
 signal exit_game
+signal update_highscore(score)
 
 var settings_showing
+var high_score = 0
 
 func _ready() -> void:
 	$Control.hide()
@@ -23,7 +25,11 @@ func _on_TileMap_update_counter(steps) -> void:
 	$Control/MoveCounter.set_text(str(steps))
 
 
-func _on_TileMap_missed_next_tile(_score) -> void:
+func _on_TileMap_missed_next_tile(score) -> void:
+	if score > high_score: 
+		high_score = score
+		$Control/HighScoreLabel.set_text("Lobby High Score: " + str(high_score))
+		emit_signal("update_highscore", high_score) #replace this with networked version
 	$Control/EndMessage.show()
 	$Control/RestartButton.show()
 

@@ -5,7 +5,7 @@
 [ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=3]
 [ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=4]
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 1020, 1280 )
 
@@ -24,7 +24,7 @@ size = 41
 extra_spacing_top = -16
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=7]
 size = 40
 extra_spacing_bottom = 9
 font_data = ExtResource( 4 )
@@ -41,7 +41,7 @@ __meta__ = {
 show_behind_parent = true
 margin_right = 800.0
 margin_bottom = 1024.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -189,7 +189,7 @@ margin_left = 56.0
 margin_top = 512.0
 margin_right = 368.0
 margin_bottom = 592.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 7 )
 text = "Host/Singleplayer"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -200,7 +200,7 @@ margin_left = 440.0
 margin_top = 512.0
 margin_right = 752.0
 margin_bottom = 592.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 7 )
 text = "Join Game"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -211,13 +211,15 @@ margin_left = 272.0
 margin_top = 624.0
 margin_right = 532.0
 margin_bottom = 694.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 7 )
 text = "Leaderboards"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="host" from="." to="." method="_on_MainMenu_host"]
 [connection signal="pressed" from="HostLobby/SoloButton" to="." method="_on_SoloButton_pressed"]
+[connection signal="pressed" from="HostLobby/HostGameButton" to="." method="_on_HostGameButton_pressed"]
 [connection signal="pressed" from="HostLobby/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="netInfoFilled" from="JoinScreen" to="." method="_on_JoinScreen_netInfoFilled"]
 [connection signal="text_entered" from="JoinScreen/IPInput" to="JoinScreen" method="_on_IPInput_text_entered"]

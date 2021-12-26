@@ -115,6 +115,7 @@ volume_db = -10.0
 stream = ExtResource( 16 )
 volume_db = -10.0
 
+[connection signal="update_highscore" from="." to="." method="_on_Player_update_highscore"]
 [connection signal="player_moved" from="PlayerBody" to="TileMap" method="_on_player_moved"]
 [connection signal="player_moved" from="PlayerBody" to="PlayerCamera" method="_on_Player2_player_moved"]
 [connection signal="player_moved" from="PlayerBody" to="sfx" method="_on_PlayerBody_player_moved"]
@@ -122,7 +123,6 @@ volume_db = -10.0
 [connection signal="restarted" from="PlayerBody" to="PlayerCamera" method="_on_Player2_restarted"]
 [connection signal="restarted" from="PlayerBody" to="HUD" method="_on_Player2_restarted"]
 [connection signal="switched_direction" from="PlayerBody" to="HUD" method="_on_Player2_switched_direction"]
-[connection signal="missed_next_tile" from="TileMap" to="." method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="PlayerBody" method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="PlayerCamera" method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="HUD" method="_on_TileMap_missed_next_tile"]
@@ -133,3 +133,4 @@ volume_db = -10.0
 [connection signal="exit_game" from="HUD" to="." method="_on_HUD_exit_game"]
 [connection signal="mute" from="HUD" to="MusicPlayer" method="_on_HUD_mute"]
 [connection signal="restart_game" from="HUD" to="PlayerBody" method="_on_HUD_restart_game"]
+[connection signal="update_highscore" from="HUD" to="." method="_on_HUD_update_highscore"]
