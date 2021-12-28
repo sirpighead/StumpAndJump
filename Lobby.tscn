@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Network/NetworkSetup.gd" type="Script" id=2]
@@ -49,9 +49,22 @@ extra_spacing_top = -13
 extra_spacing_char = -1
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=11]
+size = 33
+extra_spacing_top = -12
+extra_spacing_char = 2
+font_data = ExtResource( 1 )
+
 [sub_resource type="DynamicFont" id=5]
 size = 35
 extra_spacing_top = -16
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 35
+use_mipmaps = true
+extra_spacing_top = -9
+extra_spacing_char = 1
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=7]
@@ -101,6 +114,7 @@ __meta__ = {
 }
 
 [node name="HostLobby" type="Control" parent="MainMenu"]
+visible = false
 margin_right = 800.0
 margin_bottom = 1024.0
 __meta__ = {
@@ -205,7 +219,6 @@ __meta__ = {
 }
 
 [node name="JoinScreen" type="Control" parent="MainMenu"]
-visible = false
 margin_right = 800.0
 margin_bottom = 1024.0
 script = ExtResource( 5 )
@@ -213,15 +226,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="JoinGameButton" type="Button" parent="MainMenu/JoinScreen"]
+[node name="ConnectButton" type="Button" parent="MainMenu/JoinScreen"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = 40.0
+margin_top = 56.0
 margin_right = 160.0
-margin_bottom = 110.0
+margin_bottom = 126.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
 disabled = true
@@ -230,11 +243,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ResetButton" type="Button" parent="MainMenu/JoinScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = 152.0
+margin_right = 95.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 11 )
+text = "Retry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="IPInput" type="LineEdit" parent="MainMenu/JoinScreen"]
-margin_left = 152.0
-margin_top = 400.0
-margin_right = 648.0
-margin_bottom = 461.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -248.0
+margin_top = -128.0
+margin_right = 248.0
+margin_bottom = -67.0
 grow_vertical = 0
 custom_fonts/font = SubResource( 5 )
 align = 1
@@ -257,6 +289,24 @@ grow_horizontal = 2
 custom_fonts/font = SubResource( 4 )
 text = "Back"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Client_Username" type="LineEdit" parent="MainMenu/JoinScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -248.0
+margin_top = -48.0
+margin_right = 248.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 12 )
+align = 1
+max_length = 16
+placeholder_text = "Username..."
+caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -311,9 +361,11 @@ __meta__ = {
 [connection signal="text_entered" from="MainMenu/HostLobby/UsernameInput" to="MainMenu" method="_on_UsernameInput_text_entered"]
 [connection signal="pressed" from="MainMenu/HostLobby/CreateServer" to="MainMenu" method="_on_CreateServer_pressed"]
 [connection signal="netInfoFilled" from="MainMenu/JoinScreen" to="MainMenu" method="_on_JoinScreen_netInfoFilled"]
-[connection signal="pressed" from="MainMenu/JoinScreen/JoinGameButton" to="MainMenu" method="_on_JoinGameButton_pressed"]
+[connection signal="pressed" from="MainMenu/JoinScreen/ConnectButton" to="MainMenu" method="_on_ConnectButton_pressed"]
+[connection signal="pressed" from="MainMenu/JoinScreen/ResetButton" to="MainMenu" method="_on_ResetButton_pressed"]
 [connection signal="text_entered" from="MainMenu/JoinScreen/IPInput" to="MainMenu/JoinScreen" method="_on_IPInput_text_entered"]
 [connection signal="pressed" from="MainMenu/JoinScreen/BackButton" to="MainMenu" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="MainMenu/JoinScreen/BackButton" to="MainMenu/JoinScreen" method="_on_BackButton_pressed"]
+[connection signal="text_entered" from="MainMenu/JoinScreen/Client_Username" to="MainMenu" method="_on_Client_Username_text_entered"]
 [connection signal="pressed" from="MainMenu/TitleScreen/HostButton" to="MainMenu" method="_on_HostButton_pressed"]
 [connection signal="pressed" from="MainMenu/TitleScreen/JoinButton" to="MainMenu" method="_on_JoinButton_pressed"]

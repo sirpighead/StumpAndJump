@@ -12,6 +12,8 @@ func _ready() -> void:
 	$HostLobby.hide()
 	$JoinScreen.hide()
 	$TitleScreen.show()
+	
+	get_tree().connect("connection_failed", self, "_on_connection_failed")
 
 
 func _on_HostButton_pressed() -> void:
@@ -39,13 +41,14 @@ func _on_BackButton_pressed() -> void:
 func _on_JoinButton_pressed() -> void:
 #	print(IP.get_local_addresses())
 	$TitleScreen.hide()
-	$JoinScreen/JoinGameButton.set_disabled(true)
+	$JoinScreen/ConnectButton.set_disabled(true)
+	$JoinScreen/ResetButton.hide()
 	$JoinScreen.show()
 
 
 func _on_JoinScreen_netInfoFilled(net_info) -> void:
-	$JoinScreen/JoinGameButton.set_disabled(false)
-	$JoinScreen/JoinGameButton.set_text("Join Game!")
+	$JoinScreen/ConnectButton.set_disabled(false)
+	$JoinScreen/ConnectButton.set_text("Join Game!")
 	ip = net_info
 
 
@@ -56,9 +59,14 @@ func _on_HostGameButton_pressed() -> void:
 	$HostLobby/DefaultPort.set_text("Default Port: " + str(Network.DEFAULT_PORT))
 
 
-func _on_JoinGameButton_pressed() -> void:
+func _on_ConnectButton_pressed() -> void:
 	emit_signal("join", ip, username)
 	hide()
+
+
+func _on_connection_failed() -> void:
+	$JoinScreen/ResetButton.show()
+	$JoinScreen/ConnectButton.set_text("Connection Failed!")
 
 
 func _on_CreateServer_pressed() -> void:
@@ -69,3 +77,15 @@ func _on_CreateServer_pressed() -> void:
 func _on_UsernameInput_text_entered(new_text: String) -> void:
 	$HostLobby/CreateServer.set_disabled(false)
 	username = new_text
+
+
+func _on_Client_Username_text_entered(new_text: String) -> void:
+	username = new_text
+
+
+func _on_ResetButton_pressed() -> void:
+	$JoinScreen/Client_Username.clear()
+	$JoinScreen/IPInput.clear()
+	$JoinScreen/ConnectButton.set_text("Enter Server Info")
+	$JoinScreen/ConnectButton.set_disabled(true)
+	$JoinScreen/ResetButton.hide()

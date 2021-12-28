@@ -4,6 +4,7 @@ extends Node2D
 const PLAYER = preload("res://Player/Player.tscn")
 
 var player_info = {}
+var my_info = {name = "Player"}
 
 
 func _ready() -> void:
@@ -15,7 +16,7 @@ func _ready() -> void:
 func _player_connected(id) -> void:
 	print("Player " + str(id) + " has connected")
 	
-	spawn_player(id, false, "client")
+	spawn_player(id, false, "bozo")
 
 
 func _player_disconnected(id) -> void:
@@ -26,7 +27,7 @@ func _player_disconnected(id) -> void:
 
 func _connected_to_server() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
-	spawn_player(get_tree().get_network_unique_id(), false, "me")
+	spawn_player(get_tree().get_network_unique_id(), false, "YOU")
 
 
 func _on_MainMenu_start_singleplayer() -> void:
@@ -51,8 +52,8 @@ func _on_MainMenu_join(ip, username) -> void:
 	print("join game pressed")
 	$MainMenu.hide()
 	Network.ip_address = ip
+	print("Target IP: " + Network.ip_address)
 	Network.join_server()
-	hide()
 
 
 func spawn_player(id: int, solo: bool, username: String) -> void:
@@ -67,3 +68,9 @@ func spawn_player(id: int, solo: bool, username: String) -> void:
 		print("player " + player_instance.name + "(" + str(id) + ")" + " is network master? " + str(player_instance.is_network_master()))
 	
 	player_instance.init_player()
+
+
+remote func register_player(info) -> void:
+	var id = get_tree().get_rpc_sender_id()
+	
+	player_info[id] = info
