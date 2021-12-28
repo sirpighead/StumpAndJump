@@ -1,45 +1,66 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=2]
-[ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Network/NetworkSetup.gd" type="Script" id=2]
+[ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=3]
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://MainMenu/JoinScreen.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 1020, 1280 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 47
-font_data = ExtResource( 3 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxTexture" id=6]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 1020, 1280 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
 extra_spacing_bottom = 16
-font_data = ExtResource( 3 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 21
+extra_spacing_top = -8
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 27
 extra_spacing_bottom = 12
-font_data = ExtResource( 3 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0941176, 0.596078, 0.0784314, 1 )
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.0941176, 0.596078, 0.0784314, 1 )
+corner_detail = 6
+
+[sub_resource type="DynamicFont" id=9]
+size = 35
+extra_spacing_top = -13
+extra_spacing_char = -1
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 41
+size = 35
 extra_spacing_top = -16
-font_data = ExtResource( 3 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 40
 extra_spacing_bottom = 9
-font_data = ExtResource( 3 )
+font_data = ExtResource( 1 )
 
-[node name="Main" type="Node2D"]
-script = ExtResource( 1 )
+[node name="Lobby" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="MainCamera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -80,7 +101,6 @@ __meta__ = {
 }
 
 [node name="HostLobby" type="Control" parent="MainMenu"]
-visible = false
 margin_right = 800.0
 margin_bottom = 1024.0
 __meta__ = {
@@ -119,19 +139,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DefaultPort" type="Label" parent="MainMenu/HostLobby"]
+margin_left = 320.0
+margin_top = 680.0
+margin_right = 482.0
+margin_bottom = 712.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 0.0941176, 0.596078, 0.0784314, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Default Port: 6969"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BackButton" type="Button" parent="MainMenu/HostLobby"]
 anchor_left = 0.5
 anchor_top = 0.961
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -32.0
-margin_top = -160.064
+margin_top = -109.064
 margin_right = 33.0
-margin_bottom = -149.0
+margin_bottom = -98.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 4 )
 text = "Back"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UsernameInput" type="LineEdit" parent="MainMenu/HostLobby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = 208.0
+margin_right = 80.0
+margin_bottom = 232.0
+grow_horizontal = 2
+custom_styles/focus = SubResource( 10 )
+max_length = 16
+placeholder_text = "Username..."
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateServer" type="Button" parent="MainMenu/HostLobby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = 256.0
+margin_right = 66.0
+margin_bottom = 300.0
+custom_fonts/font = SubResource( 9 )
+text = "Host"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -151,11 +219,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -160.0
-margin_top = 112.0
+margin_top = 40.0
 margin_right = 160.0
-margin_bottom = 182.0
+margin_bottom = 110.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
+disabled = true
 text = "Enter Server Info"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -163,32 +232,14 @@ __meta__ = {
 
 [node name="IPInput" type="LineEdit" parent="MainMenu/JoinScreen"]
 margin_left = 152.0
-margin_top = 315.0
+margin_top = 400.0
 margin_right = 648.0
-margin_bottom = 376.0
+margin_bottom = 461.0
 grow_vertical = 0
 custom_fonts/font = SubResource( 5 )
 align = 1
 placeholder_text = "IP Address..."
 caret_blink = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PortInput" type="LineEdit" parent="MainMenu/JoinScreen"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -131.0
-margin_top = -56.0
-margin_right = 131.0
-margin_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 0
-custom_fonts/font = SubResource( 5 )
-align = 1
-placeholder_text = "Port..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -199,9 +250,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -32.0
-margin_top = 280.0
+margin_top = 363.0
 margin_right = 33.0
-margin_bottom = 331.0
+margin_bottom = 414.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 4 )
 text = "Back"
@@ -211,6 +262,7 @@ __meta__ = {
 }
 
 [node name="TitleScreen" type="Control" parent="MainMenu"]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -256,10 +308,11 @@ __meta__ = {
 [connection signal="pressed" from="MainMenu/HostLobby/SoloButton" to="MainMenu" method="_on_SoloButton_pressed"]
 [connection signal="pressed" from="MainMenu/HostLobby/HostGameButton" to="MainMenu" method="_on_HostGameButton_pressed"]
 [connection signal="pressed" from="MainMenu/HostLobby/BackButton" to="MainMenu" method="_on_BackButton_pressed"]
+[connection signal="text_entered" from="MainMenu/HostLobby/UsernameInput" to="MainMenu" method="_on_UsernameInput_text_entered"]
+[connection signal="pressed" from="MainMenu/HostLobby/CreateServer" to="MainMenu" method="_on_CreateServer_pressed"]
 [connection signal="netInfoFilled" from="MainMenu/JoinScreen" to="MainMenu" method="_on_JoinScreen_netInfoFilled"]
 [connection signal="pressed" from="MainMenu/JoinScreen/JoinGameButton" to="MainMenu" method="_on_JoinGameButton_pressed"]
 [connection signal="text_entered" from="MainMenu/JoinScreen/IPInput" to="MainMenu/JoinScreen" method="_on_IPInput_text_entered"]
-[connection signal="text_entered" from="MainMenu/JoinScreen/PortInput" to="MainMenu/JoinScreen" method="_on_PortInput_text_entered"]
 [connection signal="pressed" from="MainMenu/JoinScreen/BackButton" to="MainMenu" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="MainMenu/JoinScreen/BackButton" to="MainMenu/JoinScreen" method="_on_BackButton_pressed"]
 [connection signal="pressed" from="MainMenu/TitleScreen/HostButton" to="MainMenu" method="_on_HostButton_pressed"]

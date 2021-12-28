@@ -1,11 +1,11 @@
 extends Control
 
 signal start_singleplayer
-signal host
-signal join(net_info)
+signal host(username)
+signal join(net_info, username)
 
-var network_info = []
-var main_node
+var ip = ""
+var username = "Player"
 
 func _ready() -> void:
 #	print("menu loaded")
@@ -16,6 +16,11 @@ func _ready() -> void:
 
 func _on_HostButton_pressed() -> void:
 	$TitleScreen.hide()
+	$HostLobby/DefaultPort.hide()
+	$HostLobby/UsernameInput.hide()
+	$HostLobby/CreateServer.set_disabled(true)
+	$HostLobby/CreateServer.hide()
+	
 	$HostLobby.show()
 
 
@@ -28,27 +33,38 @@ func _on_BackButton_pressed() -> void:
 	$HostLobby.hide()
 	$JoinScreen.hide()
 	$TitleScreen.show()
-	network_info.clear()
+	ip = ""
 
 
 func _on_JoinButton_pressed() -> void:
-	print(IP.get_local_addresses())
+#	print(IP.get_local_addresses())
 	$TitleScreen.hide()
-	$JoinScreen/JoinGameButton.set_flat(true)
+	$JoinScreen/JoinGameButton.set_disabled(true)
 	$JoinScreen.show()
 
 
 func _on_JoinScreen_netInfoFilled(net_info) -> void:
-	$JoinScreen/JoinGameButton.set_flat(false)
+	$JoinScreen/JoinGameButton.set_disabled(false)
 	$JoinScreen/JoinGameButton.set_text("Join Game!")
-	network_info = net_info
+	ip = net_info
 
 
 func _on_HostGameButton_pressed() -> void:
-	emit_signal("host")
-	hide()
+	$HostLobby/DefaultPort.show()
+	$HostLobby/UsernameInput.show()
+	$HostLobby/CreateServer.show()
 
 
 func _on_JoinGameButton_pressed() -> void:
-	emit_signal("join", network_info)
+	emit_signal("join", ip, username)
 	hide()
+
+
+func _on_CreateServer_pressed() -> void:
+	emit_signal("host", username)
+	hide()
+
+
+func _on_UsernameInput_text_entered(new_text: String) -> void:
+	$HostLobby/CreateServer.set_disabled(false)
+	username = new_text

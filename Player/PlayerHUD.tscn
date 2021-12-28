@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/PlayerHUD.gd" type="Script" id=1]
 [ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=2]
@@ -37,12 +37,20 @@ size = 30
 extra_spacing_char = 2
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=9]
+size = 30
+extra_spacing_top = -9
+font_data = ExtResource( 2 )
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
 [node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 2.0
+margin_bottom = 2.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -50,10 +58,10 @@ __meta__ = {
 [node name="MoveCounter" type="Label" parent="Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 372.0
-margin_top = 48.0
-margin_right = 392.0
-margin_bottom = 108.0
+margin_left = -8.0
+margin_top = 14.0
+margin_right = 12.0
+margin_bottom = 74.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 1 )
 text = "0"
@@ -64,14 +72,14 @@ __meta__ = {
 }
 
 [node name="RestartButton" type="Button" parent="Control"]
-anchor_left = 9.8
-anchor_top = 15.0
-anchor_right = 9.8
-anchor_bottom = 15.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = -96.0
-margin_top = -40.0001
+margin_top = 6.0
 margin_right = 99.0
-margin_bottom = 82.8799
+margin_bottom = 128.88
 custom_fonts/font = SubResource( 3 )
 text = "Restart Game"
 __meta__ = {
@@ -81,10 +89,10 @@ __meta__ = {
 [node name="Direction" type="Label" parent="Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 348.0
-margin_top = 112.0
-margin_right = 416.736
-margin_bottom = 187.92
+margin_left = -32.0
+margin_top = 54.0
+margin_right = 36.736
+margin_bottom = 129.92
 custom_fonts/font = SubResource( 4 )
 text = "R"
 align = 1
@@ -94,14 +102,14 @@ __meta__ = {
 }
 
 [node name="EndMessage" type="Label" parent="Control"]
-anchor_left = 10.0
-anchor_top = 11.8
-anchor_right = 10.0
-anchor_bottom = 11.8
-margin_left = -174.944
-margin_top = -55.644
-margin_right = 174.944
-margin_bottom = 135.644
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.0
+margin_top = -186.0
+margin_right = 181.888
+margin_bottom = 5.28711
 custom_fonts/font = SubResource( 5 )
 text = "RIP Bozo"
 align = 1
@@ -111,8 +119,9 @@ __meta__ = {
 }
 
 [node name="SettingsButton" type="TextureButton" parent="Control"]
-margin_left = 737.0
-margin_right = 801.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 size_flags_horizontal = 8
@@ -123,11 +132,14 @@ __meta__ = {
 }
 
 [node name="Settings" type="VBoxContainer" parent="Control"]
-margin_left = 576.0
-margin_top = 64.0
-margin_right = 801.0
-margin_bottom = 192.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -232.0
+margin_top = 66.0
+margin_right = -7.0
+margin_bottom = 226.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -231,12 +243,24 @@ margin_bottom = 34.0
 text = "Advance: Right Click, E, Up Arrow"
 
 [node name="HighScoreLabel" type="Label" parent="Control"]
-margin_left = 32.0
-margin_right = 323.0
+margin_right = 291.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 8 )
 text = "Lobby High Score: 0"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerInfo" type="Label" parent="Control"]
+anchor_top = 0.936
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.46405
+custom_fonts/font = SubResource( 9 )
+text = "Server Info"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

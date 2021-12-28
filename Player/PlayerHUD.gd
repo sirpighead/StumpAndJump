@@ -9,15 +9,24 @@ signal update_highscore(score)
 var settings_showing
 var high_score = 0
 
+
 func _ready() -> void:
 	$Control.hide()
 
 
-func start_game():
+func start_game(mode):
 	$Control/RestartButton.hide()
 	$Control/EndMessage.hide()
 	$Control/Settings/Controlpanel.hide()
 	$Control/Settings.hide()
+	
+	if mode == "host":
+		$Control/ServerInfo.set_text("Hosting Server at " + Network.ip_address)
+	elif mode == "client":
+		$Control/ServerInfo.set_text("Joined Game at " + Network.ip_address)
+	else:
+		$Control/ServerInfo.set_text("Singleplayer mode")
+
 	$Control.show()
 
 
