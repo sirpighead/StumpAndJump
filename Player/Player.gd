@@ -1,7 +1,8 @@
 extends Node2D
 
-signal start_game
+
 signal update_highscore(score)
+signal exit_game
 
 var game_mode = ""
 export var spawnPoint = Vector2(448,-112)
@@ -21,10 +22,11 @@ func _ready() -> void:
 
 
 func start_solo_game() -> void:
+	print("started singleplayer")
 	$PlayerCamera._set_current(true)
 	$HUD.start_game(game_mode)
 	$PlayerBody.start_game()
-	$PlayerBody/Username.set_text("")
+	$PlayerBody/Username.hide()
 	$PlayerCamera.start_game()
 	$MusicPlayer.start_game()
 
@@ -53,8 +55,11 @@ func start_client_game() -> void:
 
 func _on_HUD_exit_game() -> void:
 	$MusicPlayer.stop()
-	get_tree().change_scene("res://Lobby.tscn")
-
+	if game_mode == "solo":
+		$Players.get_node(str(1)).queue_free()
+		get_node("res://Lobby.tscn").show()
+	else:
+		emit_signal("p_disconnected", get_tree().get_network_unique_id())
 
 
 func _on_HUD_update_highscore(score) -> void:

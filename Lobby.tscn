@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Network/NetworkSetup.gd" type="Script" id=2]
 [ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=3]
 [ext_resource path="res://MainMenu/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://MainMenu/JoinScreen.gd" type="Script" id=5]
+[ext_resource path="res://Network/Players.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
@@ -301,6 +302,9 @@ text = "Leaderboards"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Players" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 0 )
 
 [connection signal="host" from="MainMenu" to="." method="_on_MainMenu_host"]
 [connection signal="join" from="MainMenu" to="." method="_on_MainMenu_join"]

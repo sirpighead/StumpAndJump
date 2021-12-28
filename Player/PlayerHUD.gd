@@ -50,11 +50,11 @@ func _on_RestartButton_pressed() -> void:
 	emit_signal("restart_game")
 
 
-func _on_Player2_restarted(spawn) -> void:
+func _on_PlayerBody_restarted(_spawn) -> void:
 	$Control/RestartButton.hide()
 
 
-func _on_Player2_switched_direction(dir) -> void:
+func _on_PlayerBody_switched_direction(dir) -> void:
 	$Control/Direction.set_text(dir.to_upper())
 
 
