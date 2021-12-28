@@ -8,6 +8,8 @@ signal switched_direction(dir)
 const RIGHTV = Vector2(128,-128)
 const LEFTV = Vector2(-128,-128)
 
+var game_mode = ""
+
 export var spawnPoint = Vector2(448,-112)
 var falling = false
 var started = false
@@ -17,16 +19,19 @@ var newPos
 
 #network variables
 puppet var puppet_position = Vector2(0,0) setget puppet_position_set
+puppet var puppet_direction = "l"
 
 
 func _ready() -> void:
 	print("is network master:" + str(is_network_master()))
 	print("network peer:" + str(get_tree().get_network_peer()))
+	print()
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	
-	if is_network_master() or get_tree().get_network_peer() == null:
+	if  game_mode == "solo" or is_network_master():
 		if not falling:
 			if started and event.is_action_pressed("switch"):
 				if direction == "l": 
@@ -58,9 +63,17 @@ func puppet_position_set(new_value) -> void:
 	puppet_position = new_value
 
 
-func start_game() -> void:
+func _on_Network_tick_rate_timeout() -> void:
+	if is_network_master():
+		rset_unreliable("puppet_position", position)
+		rset_unreliable("puppet_direction", direction)
+
+
+func start_game(gm) -> void:
+	game_mode = gm
 	started = true
 	self.position = spawnPoint
+	$Network_tick_rate.start()
 
 
 func _on_TileMap_missed_next_tile(_score) -> void:

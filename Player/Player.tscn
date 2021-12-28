@@ -159,7 +159,6 @@ volume_db = -10.0
 [connection signal="orient_player" from="TileMap" to="PlayerBody" method="_on_TileMap_orient_player"]
 [connection signal="orient_player" from="TileMap" to="HUD" method="_on_TileMap_orient_player"]
 [connection signal="update_counter" from="TileMap" to="HUD" method="_on_TileMap_update_counter"]
-[connection signal="player_moved" from="PlayerBody" to="." method="_on_PlayerBody_player_moved"]
 [connection signal="player_moved" from="PlayerBody" to="TileMap" method="_on_PlayerBody_player_moved"]
 [connection signal="player_moved" from="PlayerBody" to="PlayerCamera" method="_on_PlayerBody_player_moved"]
 [connection signal="player_moved" from="PlayerBody" to="sfx" method="_on_PlayerBody_player_moved"]

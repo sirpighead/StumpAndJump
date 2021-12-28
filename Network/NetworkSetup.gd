@@ -4,6 +4,7 @@ extends Node2D
 const PLAYER = preload("res://Player/Player.tscn")
 
 var this_username = ""
+var player_info = {}
 
 
 func _ready() -> void:
@@ -25,6 +26,7 @@ func _player_disconnected(id) -> void:
 
 
 func _connected_to_server() -> void:
+	yield(get_tree().create_timer(0.1), "timeout")
 	spawn_player(get_tree().get_network_unique_id(), false, this_username)
 
 
@@ -39,20 +41,22 @@ func _on_MainMenu_start_singleplayer() -> void:
 
 func _on_MainMenu_host(username) -> void:
 	print("host game pressed")
+	$MainMenu.hide()
 	Network.create_server()
 	
 	this_username = username
 	spawn_player(get_tree().get_network_unique_id(), false, this_username)
-	$MainMenu.hide()
+	hide()
 
 
 func _on_MainMenu_join(ip, username) -> void:
 	print("join game pressed")
+	$MainMenu.hide()
 	Network.ip_address = ip
 	Network.join_server()
 	
 	this_username = username
-	$MainMenu.hide()
+	hide()
 
 
 func spawn_player(id: int, solo: bool, username: String) -> void:

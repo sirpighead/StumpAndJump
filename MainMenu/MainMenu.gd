@@ -53,7 +53,7 @@ func _on_HostGameButton_pressed() -> void:
 	$HostLobby/DefaultPort.show()
 	$HostLobby/UsernameInput.show()
 	$HostLobby/CreateServer.show()
-	$MainMenu/HostLobby/DefaultPort.set_text(str(Network.DEFAULT_PORT))
+	$HostLobby/DefaultPort.set_text("Default Port: " + str(Network.DEFAULT_PORT))
 
 
 func _on_JoinGameButton_pressed() -> void:
