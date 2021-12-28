@@ -56,7 +56,7 @@ func place_tile(dir: String, newSpot: Vector2, texture_index: int) -> void:
 	curTile = newSpot
 
 
-func _on_PlayerBody_player_moved(direction: String, _position) -> void:
+func _on_player_moved(direction: String, _position) -> void:
 	place_randomized_tile()
 	
 	if not direction == tileArray.pop_front():
@@ -66,7 +66,7 @@ func _on_PlayerBody_player_moved(direction: String, _position) -> void:
 		emit_signal("update_counter", stepCounter)
 
 
-func _on_PlayerBody_restarted(_spawn) -> void:
+func _on_Player2_restarted(spawn) -> void:
 	clear()
 	for t in 7:
 		var tile = randi() % 4

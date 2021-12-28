@@ -1,10 +1,5 @@
 extends Node
 
-signal p_connected(id)
-signal p_disconnected(id)
-signal con_to_serv
-
-
 const DEFAULT_PORT = 6969
 const MAX_PLAYERS = 8
 
@@ -23,7 +18,7 @@ func _ready() -> void:
 		ip_address = IP.get_local_addresses()[3]
 	
 	for ip in IP.get_local_addresses():
-		if ip.begins_with("192.168.") and not ip.ends_with(".1"):
+		if ip.begins_with("192.168."):
 			ip_address = ip
 	
 #	print(IP.get_local_addresses())
@@ -62,17 +57,14 @@ func join_server() -> void:
 
 func _player_connected(id) -> void:
 	print("Player " + str(id) + " has connected")
-	emit_signal("p_connected", id)
 
 
 func _player_disconnected(id) -> void:
 	print("Player " + str(id) + " has disconnected")
-	emit_signal("p_disconnected", id)
 
 
 func _connected_to_server() -> void:
 	print("Successfully connected to the server")
-	emit_signal("con_to_serv")
 
 
 func _server_disconnected() -> void:

@@ -5,12 +5,12 @@ var falling = false
 func _on_TileMap_missed_next_tile(_score) -> void:
 	falling = true
 
-func _on_PlayerBody_player_moved(_direction, position) -> void:
+func _on_Player2_player_moved(_direction, position) -> void:
 	if not falling:
 		self.position = position
 
 
-func _on_PlayerBody_restarted(spawn) -> void:
+func _on_Player2_restarted(spawn) -> void:
 	set_v_drag_enabled(false)
 	set_h_drag_enabled(false)
 	falling = false
@@ -21,6 +21,5 @@ func _on_PlayerBody_restarted(spawn) -> void:
 
 
 func start_game() -> void:
-	print("player camera started")
 	set_v_drag_enabled(true)
 	set_h_drag_enabled(true)
