@@ -24,8 +24,10 @@ func start_game(mode):
 		$Control/ServerInfo.set_text("Hosting Server at " + Network.ip_address)
 	elif mode == "client":
 		$Control/ServerInfo.set_text("Joined Game at " + Network.ip_address)
-	else:
+	elif mode == "solo":
 		$Control/ServerInfo.set_text("Singleplayer mode")
+	else:
+		$Control/ServerInfo.set_text("How are you seeing this???")
 
 	$Control.show()
 

@@ -19,7 +19,6 @@ const LEFTV = Vector2(-1,-3)
 
 func _ready() -> void:
 	randomize()
-	init_tiles()
 
 
 func place_randomized_tile() -> void:
@@ -40,6 +39,7 @@ func place_randomized_tile() -> void:
 		else:
 			newSpot = curTile + RIGHTV
 			place_tile("r", newSpot, tile)
+
 
 
 func place_tile(dir: String, newSpot: Vector2, texture_index: int) -> void:

@@ -48,6 +48,8 @@ func start_solo_game() -> void:
 	game_mode = "solo"
 	$PlayerCamera._set_current(true)
 	$HUD.start_game(game_mode)
+	
+	$TileMap.init_tiles()
 	$PlayerBody.start_game(game_mode)
 	$PlayerBody/Username.hide()
 	$PlayerCamera.start_game()
@@ -60,6 +62,7 @@ func start_host_game() -> void:
 
 	$PlayerCamera._set_current(true)
 	$HUD.start_game(game_mode)
+	$TileMap.init_tiles()
 	$PlayerBody.start_game(game_mode)
 	$PlayerCamera.start_game()
 	$MusicPlayer.start_game()
@@ -72,6 +75,7 @@ func start_client_game() -> void:
 
 	$PlayerCamera._set_current(true)
 	$HUD.start_game(game_mode)
+	$TileMap.init_tiles()
 	$PlayerBody.start_game(game_mode)
 	$PlayerCamera.start_game()
 	$MusicPlayer.start_game()

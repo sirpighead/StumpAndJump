@@ -20,6 +20,8 @@ var newPos
 #network variables
 puppet var puppet_position = Vector2(0,0) setget puppet_position_set
 puppet var puppet_direction = "l" setget puppet_direction_set
+puppet var puppet_falling = false
+puppet var puppet_gravity = 0.0
 
 
 func _ready() -> void:
@@ -80,17 +82,21 @@ func start_game(gm) -> void:
 	started = true
 	self.position = spawnPoint
 	$Network_tick_rate.start()
+	if game_mode == "puppet":
+		gravity = puppet_gravity
 
 
 func _on_TileMap_missed_next_tile(_score) -> void:
 	falling = true
+	rset("puppet_falling", true)
+	rset("puppet_falling", 2.0)
 
 
 func _on_HUD_restart_game() -> void:
 	self.position = spawnPoint
 	falling = false
 	$Sprite.set_flip_h(false)
-	emit_signal("restarted", spawnPoint)
+	if not game_mode == "puppet": emit_signal("restarted", spawnPoint)
 
 
 func _on_TileMap_orient_player(direction) -> void:
