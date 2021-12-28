@@ -84,7 +84,7 @@ func _on_VolumeSlider_value_changed(value: float) -> void:
 
 
 func _on_XButton_pressed() -> void:
-	emit_signal("restart_game")
+#	emit_signal("restart_game")
 	if $Control/Settings/Controlpanel.is_visible_in_tree():
 		$Control/Settings/Controlpanel.hide()
 	$Control.hide()

@@ -15,33 +15,48 @@ var direction
 var newPos
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not falling:
-		if started and event.is_action_pressed("switch"):
-			if direction == "l": 
-				direction = "r"
-				newPos = position + RIGHTV
-				emit_signal("player_moved", direction, newPos)
-				position = newPos
-				$Sprite.set_flip_h(false)
-			
-			else: 
-				direction = "l"
-				newPos = position + LEFTV
-				emit_signal("player_moved", direction, newPos)
-				position = newPos
-				$Sprite.set_flip_h(true)
-			
-			emit_signal("switched_direction", direction)
-			
+#network variables
+puppet var puppet_position = Vector2(0,0) setget puppet_position_set
 
-		
-		elif started and event.is_action_pressed("advance"):
-			if direction == "l": newPos = position + LEFTV
-			else: newPos = position + RIGHTV
-			emit_signal("player_moved", direction, newPos)
-			position = newPos
+
+func _ready() -> void:
+	print("is network master:" + str(is_network_master()))
+	print("network peer:" + str(get_tree().get_network_peer()))
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	
+	if is_network_master() or get_tree().get_network_peer() == null:
+		if not falling:
+			if started and event.is_action_pressed("switch"):
+				if direction == "l": 
+					direction = "r"
+					newPos = position + RIGHTV
+					emit_signal("player_moved", direction, newPos)
+					position = newPos
+					$Sprite.set_flip_h(false)
+				
+				else: 
+					direction = "l"
+					newPos = position + LEFTV
+					emit_signal("player_moved", direction, newPos)
+					position = newPos
+					$Sprite.set_flip_h(true)
+				
+				emit_signal("switched_direction", direction)
+				
+
 			
+			elif started and event.is_action_pressed("advance"):
+				if direction == "l": newPos = position + LEFTV
+				else: newPos = position + RIGHTV
+				emit_signal("player_moved", direction, newPos)
+				position = newPos
+
+
+func puppet_position_set(new_value) -> void:
+	puppet_position = new_value
+
 
 func start_game() -> void:
 	started = true

@@ -19,15 +19,7 @@ const LEFTV = Vector2(-1,-3)
 
 func _ready() -> void:
 	randomize()
-	curTile = startTile
-	stepCounter = 0
-	
-	# makes 15 random steps at the beginning
-	tileArray = []
-	for n in 15:
-		place_randomized_tile()
-	
-	emit_signal("orient_player", tileArray.front())
+	init_tiles()
 
 
 func place_randomized_tile() -> void:
@@ -56,7 +48,7 @@ func place_tile(dir: String, newSpot: Vector2, texture_index: int) -> void:
 	curTile = newSpot
 
 
-func _on_PlayerBody_moved(direction: String, _position) -> void:
+func _on_PlayerBody_player_moved(direction: String, _position) -> void:
 	place_randomized_tile()
 	
 	if not direction == tileArray.pop_front():
@@ -67,12 +59,20 @@ func _on_PlayerBody_moved(direction: String, _position) -> void:
 
 
 func _on_PlayerBody_restarted(spawn) -> void:
+	init_tiles()
+
+
+func init_tiles():
+	curTile = startTile
+	stepCounter = 0
+	# makes base and 15 random steps at the beginning
 	clear()
 	for t in 7:
 		var tile = randi() % 4
 		set_cell(t,-1, tile)
-	_ready()
-
-
-func _on_PlayerBody_player_moved(direction, position) -> void:
-	pass # Replace with function body.
+	
+	tileArray = []
+	for n in 15:
+		place_randomized_tile()
+	
+	emit_signal("orient_player", tileArray.front())

@@ -58,6 +58,7 @@ config/icon="res://icon.png"
 
 Network="*res://Network/network.gd"
 Main="*res://Main.gd"
+Players="*res://Players.tscn"
 
 [display]
 
