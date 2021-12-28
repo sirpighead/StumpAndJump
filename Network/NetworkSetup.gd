@@ -1,5 +1,4 @@
-extends Node
-
+extends Node2D
 
 
 func _ready() -> void:
@@ -9,6 +8,7 @@ func _ready() -> void:
 func _on_MainMenu_start_singleplayer() -> void:
 	print("started singleplayer")
 	get_tree().change_scene_to(Main.PLAYER)
+	hide()
 
 
 func _on_MainMenu_host(username) -> void:
@@ -16,7 +16,8 @@ func _on_MainMenu_host(username) -> void:
 	Network.create_server()
 	$MainMenu/HostLobby/DefaultPort.set_text(str(Network.DEFAULT_PORT))
 	
-	get_tree().change_scene_to(Main.PLAYER)
+	Main.instance_player(get_tree().get_root(), username)
+	hide()
 
 
 func _on_MainMenu_join(ip, username) -> void:
@@ -24,4 +25,5 @@ func _on_MainMenu_join(ip, username) -> void:
 	Network.ip_address = ip
 	Network.join_server()
 	
-	get_tree().change_scene_to(Main.PLAYER)
+	Main.instance_player(get_tree().get_root(), username)
+	hide()
