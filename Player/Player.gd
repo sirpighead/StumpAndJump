@@ -7,20 +7,40 @@ var game_mode = ""
 export var spawnPoint = Vector2(448,-112)
 var high_score = 0
 
+#
+#func _ready() -> void:
+#	print("player " + name + " loaded")
+#	if is_network_master():
+#		print("network master: true")
+#		if not get_tree().get_network_peer() == null:
+#			if get_tree().is_network_server():
+#				start_host_game()
+#			else:
+#				start_client_game()
+#
+#		else:
+#			start_solo_game()
+#		print("game mode: " + game_mode)
+#		print()
+#	else:
+#		print("network master false for " + name)
 
-func _ready() -> void:
-#	print("player loaded")
-	if is_network_master():
-		if not get_tree().get_network_peer() == null:
-			if get_tree().is_network_server():
-				start_host_game()
-			else:
-				start_client_game()
-				
+
+func init_player() -> void:
+	print("player " + name + " loaded")
+	if not get_tree().get_network_peer() == null:
+		if is_network_master() and name == "1":
+			start_host_game()
+		elif is_network_master():
+			start_client_game()
 		else:
-			start_solo_game()
-		print("game mode: " + game_mode)
-		print()
+			start_puppet_game()
+			
+	else:
+		start_solo_game()
+	print("game mode: " + game_mode)
+	print()
+	
 
 
 func start_solo_game() -> void:
@@ -55,6 +75,14 @@ func start_client_game() -> void:
 	$PlayerBody.start_game(game_mode)
 	$PlayerCamera.start_game()
 	$MusicPlayer.start_game()
+
+
+func start_puppet_game():
+	print("Puppet Created!")
+	print()
+	game_mode = "puppet"
+	
+	$PlayerBody.start_game(game_mode)
 
 
 func _on_HUD_exit_game() -> void:

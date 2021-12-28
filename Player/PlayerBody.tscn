@@ -21,6 +21,6 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Network_tick_rate" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.06
 
 [connection signal="timeout" from="Network_tick_rate" to="." method="_on_Network_tick_rate_timeout"]

@@ -3,7 +3,6 @@ extends Node2D
 
 const PLAYER = preload("res://Player/Player.tscn")
 
-var this_username = "Player"
 var player_info = {}
 
 
@@ -16,7 +15,7 @@ func _ready() -> void:
 func _player_connected(id) -> void:
 	print("Player " + str(id) + " has connected")
 	
-	spawn_player(id, false, this_username)
+	spawn_player(id, false, "client")
 
 
 func _player_disconnected(id) -> void:
@@ -27,7 +26,7 @@ func _player_disconnected(id) -> void:
 
 func _connected_to_server() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
-	spawn_player(get_tree().get_network_unique_id(), false, this_username)
+	spawn_player(get_tree().get_network_unique_id(), false, "me")
 
 
 func _on_MainMenu_start_singleplayer() -> void:
@@ -44,8 +43,7 @@ func _on_MainMenu_host(username) -> void:
 	$MainMenu.hide()
 	Network.create_server()
 	
-	this_username = username
-	spawn_player(get_tree().get_network_unique_id(), false, this_username)
+	spawn_player(get_tree().get_network_unique_id(), false, username)
 	hide()
 
 
@@ -60,5 +58,12 @@ func _on_MainMenu_join(ip, username) -> void:
 func spawn_player(id: int, solo: bool, username: String) -> void:
 	var player_instance = Main.instance_player(PLAYER, Players, username)
 	player_instance.name = str(id)
+	
+	print("player " + player_instance.name + "'s parent: " + str(player_instance.get_parent()))
+	
+	print(player_instance.name + " spawned")
 	if not solo:
 		player_instance.set_network_master(id)
+		print("player " + player_instance.name + "(" + str(id) + ")" + " is network master? " + str(player_instance.is_network_master()))
+	
+	player_instance.init_player()

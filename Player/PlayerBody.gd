@@ -19,7 +19,7 @@ var newPos
 
 #network variables
 puppet var puppet_position = Vector2(0,0) setget puppet_position_set
-puppet var puppet_direction = "l"
+puppet var puppet_direction = "l" setget puppet_direction_set
 
 
 func _ready() -> void:
@@ -59,6 +59,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func puppet_position_set(new_value) -> void:
 	puppet_position = new_value
+	
+	position = puppet_position
+
+
+func puppet_direction_set(new_value) -> void:
+	puppet_direction = new_value
+	
+	direction = puppet_direction
 
 
 func _on_Network_tick_rate_timeout() -> void:
