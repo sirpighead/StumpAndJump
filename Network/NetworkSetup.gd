@@ -3,7 +3,7 @@ extends Node2D
 
 const PLAYER = preload("res://Player/Player.tscn")
 
-var this_username = ""
+var this_username = "Player"
 var player_info = {}
 
 
@@ -54,8 +54,6 @@ func _on_MainMenu_join(ip, username) -> void:
 	$MainMenu.hide()
 	Network.ip_address = ip
 	Network.join_server()
-	
-	this_username = username
 	hide()
 
 

@@ -126,7 +126,6 @@ __meta__ = {
 stream = ExtResource( 7 )
 volume_db = -25.0
 script = ExtResource( 6 )
-startAt = 0.0
 
 [node name="sfx" type="Node2D" parent="."]
 scale = Vector2( 2, 1.5 )

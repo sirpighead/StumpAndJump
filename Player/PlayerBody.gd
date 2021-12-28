@@ -23,9 +23,7 @@ puppet var puppet_direction = "l"
 
 
 func _ready() -> void:
-	print("is network master:" + str(is_network_master()))
-	print("network peer:" + str(get_tree().get_network_peer()))
-	print()
+	pass
 
 
 

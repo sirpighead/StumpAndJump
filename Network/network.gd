@@ -36,6 +36,7 @@ func create_server() -> void:
 	server = NetworkedMultiplayerENet.new()
 	server.create_server(DEFAULT_PORT, MAX_PLAYERS)
 	
+	print("server peer: " + str(server))
 #	print(server)
 	get_tree().set_network_peer(server)
 	
@@ -46,6 +47,7 @@ func join_server() -> void:
 	print("join server called")
 	client = NetworkedMultiplayerENet.new()
 	client.create_client(ip_address, DEFAULT_PORT)
+	print("client peer: " + str(client))
 	get_tree().set_network_peer(client)
 	
 #	print(get_tree().get_network_unique_id())

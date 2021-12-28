@@ -10,16 +10,17 @@ var high_score = 0
 
 func _ready() -> void:
 #	print("player loaded")
-	if not get_tree().get_network_peer() == null:
-		if get_tree().is_network_server():
-			start_host_game()
+	if is_network_master():
+		if not get_tree().get_network_peer() == null:
+			if get_tree().is_network_server():
+				start_host_game()
+			else:
+				start_client_game()
+				
 		else:
-			start_client_game()
-			
-	else:
-		start_solo_game()
-	
-	print("game mode: " + game_mode)
+			start_solo_game()
+		print("game mode: " + game_mode)
+		print()
 
 
 func start_solo_game() -> void:
@@ -35,7 +36,6 @@ func start_solo_game() -> void:
 
 func start_host_game() -> void:
 	print("Server created!")
-	print()
 	game_mode = "host"
 
 	$PlayerCamera._set_current(true)
@@ -62,7 +62,7 @@ func _on_HUD_exit_game() -> void:
 	$MusicPlayer.stop()
 	if game_mode == "solo":
 		emit_signal("exit_solo_game", int(self.name))
-	else:
+	elif is_network_master():
 		Main.network_disconnect()
 	
 	get_tree().change_scene("res://Lobby.tscn")

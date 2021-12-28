@@ -1,11 +1,11 @@
 extends AudioStreamPlayer
 
 var muted = false
-export var startAt = 4.5
+
 
 
 func start_game() -> void:
-	play(startAt)
+	play()
 
 
 func _on_HUD_mute() -> void:
