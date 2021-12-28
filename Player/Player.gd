@@ -61,6 +61,8 @@ func start_host_game() -> void:
 	game_mode = "host"
 
 	$PlayerCamera._set_current(true)
+
+
 	$HUD.start_game(game_mode)
 	$TileMap.init_tiles()
 	$PlayerBody.start_game(game_mode)
@@ -89,6 +91,7 @@ func start_puppet_game():
 	$PlayerBody.start_game(game_mode)
 
 
+
 func _on_HUD_exit_game() -> void:
 	print("exiting game mode " + game_mode)
 	$MusicPlayer.stop()
@@ -104,4 +107,5 @@ func _on_HUD_exit_game() -> void:
 func _on_HUD_update_highscore(score) -> void:
 	high_score = score
 	emit_signal("update_highscore", high_score) #replace this with networked version rpc or sum
+
 

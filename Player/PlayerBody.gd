@@ -1,4 +1,4 @@
-extends Actor
+extends KinematicBody2D
 
 signal player_moved(direction, position)
 
@@ -16,17 +16,26 @@ var started = false
 var direction
 var newPos
 
+#physics variables
+export var speed = Vector2(300.0,1000.0)
+export var gravity = 2.0
+var velocity: = Vector2.ZERO
+
 
 #network variables
 puppet var puppet_position = Vector2(0,0) setget puppet_position_set
 puppet var puppet_direction = "l" setget puppet_direction_set
-puppet var puppet_falling = false
-puppet var puppet_gravity = 0.0
 
 
 func _ready() -> void:
 	pass
 
+
+func _physics_process(delta: float) -> void:
+	velocity.y += gravity*delta
+	velocity.y = max(velocity.y, speed.y)
+	
+	velocity = move_and_slide(velocity)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -83,13 +92,13 @@ func start_game(gm) -> void:
 	self.position = spawnPoint
 	$Network_tick_rate.start()
 	if game_mode == "puppet":
-		gravity = puppet_gravity
+		set_physics_process(false)
+		print("Turns puppet gravity to " + str(gravity))
 
 
 func _on_TileMap_missed_next_tile(_score) -> void:
 	falling = true
-	rset("puppet_falling", true)
-	rset("puppet_falling", 2.0)
+	rpc("set_physicis_process", true)
 
 
 func _on_HUD_restart_game() -> void:
