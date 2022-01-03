@@ -2,7 +2,6 @@ extends TileMap
 
 signal missed_next_tile(score)
 signal update_counter(steps)
-signal change_level(steps)
 signal orient_player(direction)
 
 export var startTile = Vector2(3,-1)
@@ -57,7 +56,6 @@ func _on_PlayerBody_player_moved(direction: String, _position) -> void:
 	else:
 		stepCounter += 1
 		emit_signal("update_counter", stepCounter)
-		if stepCounter == 100: emit_signal("change_level", stepCounter)
 
 
 func _on_PlayerBody_restarted(spawn) -> void:
