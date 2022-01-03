@@ -61,7 +61,7 @@ script = ExtResource( 12 )
 CLOUD_SPEED = -10.0
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/backclouds"]
-position = Vector2( 2.84217e-14, -1272 )
+position = Vector2( -16, -1272 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 13 )
 
@@ -151,7 +151,11 @@ volume_db = -10.0
 stream = ExtResource( 16 )
 volume_db = -10.0
 
+[node name="Node2D" type="Node2D" parent="."]
+
 [connection signal="update_highscore" from="." to="." method="_on_Player_update_highscore"]
+[connection signal="change_level" from="TileMap" to="." method="_on_TileMap_change_level"]
+[connection signal="change_level" from="TileMap" to="MusicPlayer" method="_on_TileMap_change_level"]
 [connection signal="missed_next_tile" from="TileMap" to="PlayerCamera" method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="PlayerBody" method="_on_TileMap_missed_next_tile"]
 [connection signal="missed_next_tile" from="TileMap" to="HUD" method="_on_TileMap_missed_next_tile"]
