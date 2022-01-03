@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Network/NetworkSetup.gd" type="Script" id=2]
@@ -22,6 +22,16 @@ region_rect = Rect2( 0, 0, 1020, 1280 )
 size = 40
 extra_spacing_bottom = 16
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 36
+extra_spacing_top = -11
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
 
 [sub_resource type="DynamicFont" id=8]
 size = 21
@@ -148,7 +158,26 @@ margin_right = 150.0
 margin_bottom = 166.0
 grow_horizontal = 2
 custom_fonts/font = SubResource( 3 )
+disabled = true
 text = "Host Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComingSoon!" type="Label" parent="MainMenu/HostLobby"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = 64.0
+margin_right = 150.0
+margin_bottom = 101.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Coming Soon!"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -219,6 +248,7 @@ __meta__ = {
 }
 
 [node name="JoinScreen" type="Control" parent="MainMenu"]
+visible = false
 margin_right = 800.0
 margin_bottom = 1024.0
 script = ExtResource( 5 )
@@ -312,7 +342,6 @@ __meta__ = {
 }
 
 [node name="TitleScreen" type="Control" parent="MainMenu"]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -336,6 +365,7 @@ margin_top = 512.0
 margin_right = 752.0
 margin_bottom = 592.0
 custom_fonts/font = SubResource( 7 )
+disabled = true
 text = "Join Game"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -348,6 +378,24 @@ margin_right = 532.0
 margin_bottom = 694.0
 custom_fonts/font = SubResource( 7 )
 text = "Leaderboards"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComingSoon!" type="Label" parent="MainMenu/TitleScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 420.0
+margin_top = 460.0
+margin_right = 732.0
+margin_bottom = 497.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
+text = "Coming Soon!"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -11,7 +11,7 @@ var ip_address = ""
 
 func _ready() -> void:
 	if OS.get_name() == "Windows":
-		ip_address = IP.get_local_addresses()[1]
+		ip_address = IP.get_local_addresses()[3]
 	elif OS.get_name() == "Android":
 		ip_address = IP.get_local_addresses()[0]
 	else:
@@ -21,7 +21,8 @@ func _ready() -> void:
 		if ip.begins_with("192.168."):
 			ip_address = ip
 	
-#	print(IP.get_local_addresses())
+	print(IP.get_local_addresses())
+	print(IP.get_local_interfaces())
 #	print(ip_address)
 	
 	#client signals
