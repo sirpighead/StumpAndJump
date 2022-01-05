@@ -9,8 +9,7 @@ var username = "Player"
 
 func _ready() -> void:
 #	print("menu loaded")
-	$HostLobby.hide()
-	$JoinScreen.hide()
+	$MPLobby.hide()
 	$TitleScreen.show()
 	
 	get_tree().connect("connection_failed", self, "_on_connection_failed")
@@ -18,12 +17,12 @@ func _ready() -> void:
 
 func _on_HostButton_pressed() -> void:
 	$TitleScreen.hide()
-	$HostLobby/DefaultPort.hide()
-	$HostLobby/UsernameInput.hide()
-	$HostLobby/CreateServer.set_disabled(true)
-	$HostLobby/CreateServer.hide()
+	$MPLobby/HostLobby/DefaultPort.hide()
+	$MPLobby/HostLobby/UsernameInput.hide()
+	$MPLobby/HostLobby/CreateServer.set_disabled(true)
+	$MPLobby/HostLobby/CreateServer.hide()
 	
-	$HostLobby.show()
+	$MPLobby/HostLobby.show()
 
 
 func _on_SoloButton_pressed() -> void:
@@ -32,8 +31,10 @@ func _on_SoloButton_pressed() -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	$HostLobby.hide()
-	$JoinScreen.hide()
+	$MPLobby/HostLobby.hide()
+	$MPLobby/JoinLobby.hide()
+	$MPLobby.hide()
+	$SingleplayerLobby.hide()
 	$TitleScreen.show()
 	ip = ""
 
@@ -41,22 +42,22 @@ func _on_BackButton_pressed() -> void:
 func _on_JoinButton_pressed() -> void:
 #	print(IP.get_local_addresses())
 	$TitleScreen.hide()
-	$JoinScreen/ConnectButton.set_disabled(true)
-	$JoinScreen/ResetButton.hide()
-	$JoinScreen.show()
+	$MPLobby/JoinLobby/ConnectButton.set_disabled(true)
+	$MPLobby/JoinLobby/ResetButton.hide()
+	$MPLobby/JoinLobby.show()
 
 
 func _on_JoinScreen_netInfoFilled(net_info) -> void:
-	$JoinScreen/ConnectButton.set_disabled(false)
-	$JoinScreen/ConnectButton.set_text("Join Game!")
+	$MPLobby/JoinLobby/ConnectButton.set_disabled(false)
+	$MPLobby/JoinLobby/ConnectButton.set_text("Join Game!")
 	ip = net_info
 
 
 func _on_HostGameButton_pressed() -> void:
-	$HostLobby/DefaultPort.show()
-	$HostLobby/UsernameInput.show()
-	$HostLobby/CreateServer.show()
-	$HostLobby/DefaultPort.set_text("Default Port: " + str(Network.DEFAULT_PORT))
+	$MPLobby/HostLobby/DefaultPort.show()
+	$MPLobby/HostLobby/UsernameInput.show()
+	$MPLobby/HostLobby/CreateServer.show()
+	$MPLobby/HostLobby/DefaultPort.set_text("Default Port: " + str(Network.DEFAULT_PORT))
 
 
 func _on_ConnectButton_pressed() -> void:
@@ -65,8 +66,8 @@ func _on_ConnectButton_pressed() -> void:
 
 
 func _on_connection_failed() -> void:
-	$JoinScreen/ResetButton.show()
-	$JoinScreen/ConnectButton.set_text("Connection Failed!")
+	$MPLobby/JoinLobby/ResetButton.show()
+	$MPLobby/JoinLobby/ConnectButton.set_text("Connection Failed!")
 
 
 func _on_CreateServer_pressed() -> void:
@@ -75,7 +76,7 @@ func _on_CreateServer_pressed() -> void:
 
 
 func _on_UsernameInput_text_entered(new_text: String) -> void:
-	$HostLobby/CreateServer.set_disabled(false)
+	$MPLobby/HostLobby/CreateServer.set_disabled(false)
 	username = new_text
 
 
@@ -84,8 +85,8 @@ func _on_Client_Username_text_entered(new_text: String) -> void:
 
 
 func _on_ResetButton_pressed() -> void:
-	$JoinScreen/Client_Username.clear()
-	$JoinScreen/IPInput.clear()
-	$JoinScreen/ConnectButton.set_text("Enter Server Info")
-	$JoinScreen/ConnectButton.set_disabled(true)
-	$JoinScreen/ResetButton.hide()
+	$MPLobby/JoinLobby/Client_Username.clear()
+	$MPLobby/JoinLobby/IPInput.clear()
+	$MPLobby/JoinLobby/ConnectButton.set_text("Enter Server Info")
+	$MPLobby/JoinLobby/ConnectButton.set_disabled(true)
+	$MPLobby/JoinLobby/ResetButton.hide()
