@@ -7,24 +7,6 @@ var game_mode = ""
 export var spawnPoint = Vector2(448,-112)
 var high_score = 0
 
-#
-#func _ready() -> void:
-#	print("player " + name + " loaded")
-#	if is_network_master():
-#		print("network master: true")
-#		if not get_tree().get_network_peer() == null:
-#			if get_tree().is_network_server():
-#				start_host_game()
-#			else:
-#				start_client_game()
-#
-#		else:
-#			start_solo_game()
-#		print("game mode: " + game_mode)
-#		print()
-#	else:
-#		print("network master false for " + name)
-
 
 func init_player() -> void:
 	print("player " + name + " loaded")
