@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal player_moved(direction, position)
 
-signal restarted(spawn)
+signal restarted(spawn, level)
 signal switched_direction(dir)
 
 const RIGHTV = Vector2(128,-128)
@@ -15,6 +15,7 @@ var falling = false
 var started = false
 var direction
 var newPos
+var level
 
 #physics variables
 export var speed = Vector2(300.0,1000.0)
@@ -90,7 +91,8 @@ func start_game(gm) -> void:
 	game_mode = gm
 	started = true
 	self.position = spawnPoint
-	$Network_tick_rate.start()
+	level = 1
+	if not game_mode == "solo": $Network_tick_rate.start()
 	if game_mode == "puppet":
 		set_physics_process(false)
 		print("Turns puppet gravity to " + str(gravity))
@@ -104,8 +106,9 @@ func _on_TileMap_missed_next_tile(_score) -> void:
 func _on_HUD_restart_game() -> void:
 	self.position = spawnPoint
 	falling = false
+	level = 1
 	$Sprite.set_flip_h(false)
-	if not game_mode == "puppet": emit_signal("restarted", spawnPoint)
+	if not game_mode == "puppet": emit_signal("restarted", spawnPoint, level)
 
 
 func _on_TileMap_orient_player(direction) -> void:
@@ -116,3 +119,8 @@ func _on_TileMap_orient_player(direction) -> void:
 	else: 
 		$Sprite.set_flip_h(true)
 		newPos = position + LEFTV
+
+
+func next_level(pos):
+	level += 1
+	print("level advanced to " + str(level))

@@ -91,3 +91,20 @@ func _on_HUD_update_highscore(score) -> void:
 	emit_signal("update_highscore", high_score) #replace this with networked version rpc or sum
 
 
+
+
+func _on_TileMap_reached_100_steps(steps) -> void:
+	var playerPos = $PlayerBody.position
+	$ParallaxBackground.next_level()
+	$PlayerBody.next_level(playerPos)
+	$PlayerCamera.next_level()
+	$MusicPlayer.next_level()
+
+
+
+func _on_PlayerBody_restarted(spawn, level) -> void:
+	$TileMap.reset(spawn)
+	$PlayerCamera.reset(spawn)
+	$HUD.reset(spawn)
+	$ParallaxBackground.reset()
+	$MusicPlayer.reset(level)

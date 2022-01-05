@@ -52,7 +52,7 @@ func _on_RestartButton_pressed() -> void:
 	emit_signal("restart_game")
 
 
-func _on_PlayerBody_restarted(spawn) -> void:
+func reset(spawn) -> void:
 	$Control/RestartButton.hide()
 
 

@@ -10,7 +10,7 @@ func _on_PlayerBody_player_moved(_direction, position) -> void:
 		self.position = position
 
 
-func _on_PlayerBody_restarted(spawn) -> void:
+func reset(spawn) -> void:
 	set_v_drag_enabled(false)
 	set_h_drag_enabled(false)
 	falling = false
@@ -23,3 +23,6 @@ func _on_PlayerBody_restarted(spawn) -> void:
 func start_game() -> void:
 	set_v_drag_enabled(true)
 	set_h_drag_enabled(true)
+	
+func next_level():
+	pass
