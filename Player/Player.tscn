@@ -1,10 +1,24 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Player/PlayerBody.tscn" type="PackedScene" id=1]
-[ext_resource path="res://SinglePlayerWorld/LevelScenes/Level1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/textures/stage1_new_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://Player/TileDrawer.gd" type="Script" id=3]
 [ext_resource path="res://Player/PlayerCamera.gd" type="Script" id=4]
 [ext_resource path="res://Player/PlayerHUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SinglePlayerWorld/MusicPlayer.gd" type="Script" id=6]
+[ext_resource path="res://Resources/music/StumpAndJumpStage1.wav" type="AudioStream" id=7]
 [ext_resource path="res://Player/Player.gd" type="Script" id=8]
+[ext_resource path="res://Resources/textures/backgrounds/stage1sky.png" type="Texture" id=9]
+[ext_resource path="res://Player/frontclouds.gd" type="Script" id=10]
+[ext_resource path="res://Resources/textures/backgrounds/finalfrontclouds.png" type="Texture" id=11]
+[ext_resource path="res://Player/backclouds.gd" type="Script" id=12]
+[ext_resource path="res://Resources/textures/backgrounds/stage1backstill.png" type="Texture" id=13]
+[ext_resource path="res://Player/sfx.gd" type="Script" id=14]
+[ext_resource path="res://Resources/sfx/SFXtile2.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Resources/sfx/SFXtile5.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Resources/sfx/SFXtile1.ogg" type="AudioStream" id=17]
+[ext_resource path="res://Resources/sfx/SFXtile3.ogg" type="AudioStream" id=18]
+[ext_resource path="res://Resources/sfx/SFXtile4.ogg" type="AudioStream" id=19]
 [ext_resource path="res://Resources/fonts/poco/Poco.ttf" type="DynamicFontData" id=20]
 
 [sub_resource type="DynamicFont" id=1]
@@ -30,6 +44,63 @@ expand_margin_left = 2.0
 [node name="Player" type="Node2D"]
 script = ExtResource( 8 )
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.15, 0.2 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/sky"]
+position = Vector2( 0, -664 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 9 )
+
+[node name="backclouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.15, 0.3 )
+motion_mirroring = Vector2( 2550, 0 )
+script = ExtResource( 12 )
+CLOUD_SPEED = -10.0
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/backclouds"]
+position = Vector2( 2.84217e-14, -1272 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 13 )
+
+[node name="frontclouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.15, 0.35 )
+motion_mirroring = Vector2( 8224, 0 )
+script = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/frontclouds"]
+position = Vector2( 2752, -1920 )
+scale = Vector2( 2, 2.2 )
+texture = ExtResource( 11 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 2, 1.5 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 64, 24 )
+cell_custom_transform = Transform2D( 64, 0, 0, 8, 0, 0 )
+cell_tile_origin = 1
+collision_use_kinematic = true
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -65536, 4, 2, -65535, 4, 1, -65534, 4, 0, -65533, 4, 2, -65532, 4, 0, -65531, 4, 0, -65530, 4, 3 )
+script = ExtResource( 3 )
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2( 448, -112 )
+zoom = Vector2( 1.8, 1.8 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.3
+drag_margin_top = 0.0
+drag_margin_right = 0.3
+drag_margin_bottom = 0.8
+editor_draw_drag_margin = true
+script = ExtResource( 4 )
+
 [node name="PlayerBody" parent="." instance=ExtResource( 1 )]
 position = Vector2( 448, -112 )
 
@@ -51,26 +122,51 @@ __meta__ = {
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
 
-[node name="PlayerCamera" type="Camera2D" parent="."]
-position = Vector2( 448, -112 )
-zoom = Vector2( 1.8, 1.8 )
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-drag_margin_left = 0.3
-drag_margin_top = 0.0
-drag_margin_right = 0.3
-drag_margin_bottom = 0.8
-editor_draw_drag_margin = true
-script = ExtResource( 4 )
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -25.0
+script = ExtResource( 6 )
 
-[node name="Level1" parent="." instance=ExtResource( 2 )]
+[node name="sfx" type="Node2D" parent="."]
+scale = Vector2( 2, 1.5 )
+script = ExtResource( 14 )
+
+[node name="bloop1" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 17 )
+volume_db = -10.0
+
+[node name="bloop2" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 15 )
+volume_db = -10.0
+
+[node name="bloop3" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 18 )
+volume_db = -10.0
+
+[node name="bloop4" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 19 )
+volume_db = -10.0
+
+[node name="bloop5" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 16 )
+volume_db = -10.0
 
 [connection signal="update_highscore" from="." to="." method="_on_Player_update_highscore"]
+[connection signal="missed_next_tile" from="TileMap" to="PlayerCamera" method="_on_TileMap_missed_next_tile"]
+[connection signal="missed_next_tile" from="TileMap" to="PlayerBody" method="_on_TileMap_missed_next_tile"]
+[connection signal="missed_next_tile" from="TileMap" to="HUD" method="_on_TileMap_missed_next_tile"]
+[connection signal="orient_player" from="TileMap" to="PlayerBody" method="_on_TileMap_orient_player"]
+[connection signal="orient_player" from="TileMap" to="HUD" method="_on_TileMap_orient_player"]
+[connection signal="update_counter" from="TileMap" to="HUD" method="_on_TileMap_update_counter"]
+[connection signal="player_moved" from="PlayerBody" to="TileMap" method="_on_PlayerBody_player_moved"]
 [connection signal="player_moved" from="PlayerBody" to="PlayerCamera" method="_on_PlayerBody_player_moved"]
-[connection signal="restarted" from="PlayerBody" to="HUD" method="_on_PlayerBody_restarted"]
+[connection signal="player_moved" from="PlayerBody" to="sfx" method="_on_PlayerBody_player_moved"]
+[connection signal="restarted" from="PlayerBody" to="TileMap" method="_on_PlayerBody_restarted"]
 [connection signal="restarted" from="PlayerBody" to="PlayerCamera" method="_on_PlayerBody_restarted"]
+[connection signal="restarted" from="PlayerBody" to="HUD" method="_on_PlayerBody_restarted"]
 [connection signal="switched_direction" from="PlayerBody" to="HUD" method="_on_PlayerBody_switched_direction"]
+[connection signal="change_volume" from="HUD" to="MusicPlayer" method="_on_HUD_change_volume"]
 [connection signal="exit_game" from="HUD" to="." method="_on_HUD_exit_game"]
+[connection signal="mute" from="HUD" to="MusicPlayer" method="_on_HUD_mute"]
 [connection signal="restart_game" from="HUD" to="PlayerBody" method="_on_HUD_restart_game"]
 [connection signal="update_highscore" from="HUD" to="." method="_on_HUD_update_highscore"]

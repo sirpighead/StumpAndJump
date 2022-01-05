@@ -7,6 +7,23 @@ var game_mode = ""
 export var spawnPoint = Vector2(448,-112)
 var high_score = 0
 
+#
+#func _ready() -> void:
+#	print("player " + name + " loaded")
+#	if is_network_master():
+#		print("network master: true")
+#		if not get_tree().get_network_peer() == null:
+#			if get_tree().is_network_server():
+#				start_host_game()
+#			else:
+#				start_client_game()
+#
+#		else:
+#			start_solo_game()
+#		print("game mode: " + game_mode)
+#		print()
+#	else:
+#		print("network master false for " + name)
 
 
 func init_player() -> void:
@@ -31,11 +48,12 @@ func start_solo_game() -> void:
 	game_mode = "solo"
 	$PlayerCamera._set_current(true)
 	$HUD.start_game(game_mode)
+	
+	$TileMap.init_tiles()
 	$PlayerBody.start_game(game_mode)
 	$PlayerBody/Username.hide()
 	$PlayerCamera.start_game()
-	
-	$World.start_world()
+	$MusicPlayer.start_game()
 
 
 func start_host_game() -> void:

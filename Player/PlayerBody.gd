@@ -96,7 +96,7 @@ func start_game(gm) -> void:
 		print("Turns puppet gravity to " + str(gravity))
 
 
-func _on_World_missed_next_tile(_score) -> void:
+func _on_TileMap_missed_next_tile(_score) -> void:
 	falling = true
 	rpc("set_physicis_process", true)
 
@@ -108,7 +108,7 @@ func _on_HUD_restart_game() -> void:
 	if not game_mode == "puppet": emit_signal("restarted", spawnPoint)
 
 
-func _on_World_orient_player(direction) -> void:
+func _on_TileMap_orient_player(direction) -> void:
 	self.direction = direction
 	if self.direction == "r": 
 		$Sprite.set_flip_h(false)
