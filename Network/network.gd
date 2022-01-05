@@ -21,8 +21,8 @@ func _ready() -> void:
 		if ip.begins_with("192.168."):
 			ip_address = ip
 	
-	print(IP.get_local_addresses())
-	print(IP.get_local_interfaces())
+#	print(IP.get_local_addresses())
+#	print(IP.get_local_interfaces())
 #	print(ip_address)
 	
 	#client signals

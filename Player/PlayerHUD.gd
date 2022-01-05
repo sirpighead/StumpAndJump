@@ -32,11 +32,11 @@ func start_game(mode):
 	$Control.show()
 
 
-func _on_TileMap_update_counter(steps) -> void:
+func _on_World_update_counter(steps) -> void:
 	$Control/MoveCounter.set_text(str(steps))
 
 
-func _on_TileMap_missed_next_tile(score) -> void:
+func _on_World_missed_next_tile(score) -> void:
 	if score > high_score: 
 		high_score = score
 		$Control/HighScoreLabel.set_text("Lobby High Score: " + str(high_score))
@@ -64,7 +64,7 @@ func _on_MuteButton_pressed() -> void:
 	emit_signal("mute")
 
 
-func _on_TileMap_orient_player(direction) -> void:
+func _on_World_orient_player(direction) -> void:
 	$Control/Direction.set_text(direction.to_upper())
 
 
