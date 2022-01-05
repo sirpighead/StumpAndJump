@@ -53,14 +53,14 @@ script = ExtResource( 22 )
 motion_scale = Vector2( 0.15, 0.2 )
 
 [node name="Techno" type="Sprite" parent="ParallaxBackground/sky"]
-position = Vector2( 0, -664 )
+position = Vector2( 0, -3864 )
 rotation = -1.57079
-scale = Vector2( 1.66051, 2.5 )
+scale = Vector2( 2, 2.5 )
 texture = ExtResource( 21 )
 
 [node name="Sky" type="Sprite" parent="ParallaxBackground/sky"]
 position = Vector2( 0, -664 )
-scale = Vector2( 2.5, 2.5 )
+scale = Vector2( 2.5, 3 )
 texture = ExtResource( 9 )
 
 [node name="backclouds" type="ParallaxLayer" parent="ParallaxBackground"]

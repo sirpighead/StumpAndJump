@@ -6,6 +6,9 @@ var backgrounds = [
 ]
 
 
+func _ready() -> void:
+	$sky/Techno.hide()
+
 
 func next_level():
 	$sky/Sky.hide()
