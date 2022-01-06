@@ -50,17 +50,17 @@ script = ExtResource( 8 )
 script = ExtResource( 22 )
 
 [node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.15, 0.2 )
+motion_scale = Vector2( 0.15, 0.15 )
 
 [node name="Techno" type="Sprite" parent="ParallaxBackground/sky"]
-position = Vector2( 0, -3864 )
+position = Vector2( 0.00062831, -946.861 )
 rotation = -1.57079
-scale = Vector2( 2, 2.5 )
+scale = Vector2( 2.15434, 2.5 )
 texture = ExtResource( 21 )
 
 [node name="Sky" type="Sprite" parent="ParallaxBackground/sky"]
-position = Vector2( 0, -664 )
-scale = Vector2( 2.5, 3 )
+position = Vector2( 0, -952 )
+scale = Vector2( 2.5, 3.2375 )
 texture = ExtResource( 9 )
 
 [node name="backclouds" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -70,8 +70,8 @@ script = ExtResource( 12 )
 CLOUD_SPEED = -10.0
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/backclouds"]
-position = Vector2( 2.84217e-14, -1272 )
-scale = Vector2( 2.5, 2.5 )
+position = Vector2( 2.84217e-14, -1508 )
+scale = Vector2( 2.5, 2.86875 )
 texture = ExtResource( 13 )
 
 [node name="frontclouds" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -80,8 +80,8 @@ motion_mirroring = Vector2( 8224, 0 )
 script = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/frontclouds"]
-position = Vector2( 2752, -1920 )
-scale = Vector2( 2, 2.2 )
+position = Vector2( 2752, -2247.2 )
+scale = Vector2( 2, 2.62604 )
 texture = ExtResource( 11 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -100,6 +100,8 @@ script = ExtResource( 3 )
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 448, -112 )
 zoom = Vector2( 1.8, 1.8 )
+limit_top = -11260
+limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true

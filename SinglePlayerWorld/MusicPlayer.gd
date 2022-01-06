@@ -28,7 +28,7 @@ func _on_HUD_change_volume(volume) -> void:
 func next_level():
 	set_stream(SONGS[1])
 #	print("Current music:" + str(stream))
-	play(4.5)
+	play(3.0)
 
 
 func reset(level):
