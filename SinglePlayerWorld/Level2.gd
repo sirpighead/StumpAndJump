@@ -7,6 +7,7 @@ var backgrounds = [
 
 
 func _ready() -> void:
+	
 	$sky/Techno.position = Vector2(0,-(2*1280))
 
 #

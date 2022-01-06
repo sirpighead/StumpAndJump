@@ -13,7 +13,7 @@ const LEVELS = [
 	preload("res://SinglePlayerWorld/Level2.tscn"),
 ]
 
-var currentLevel
+var currentLevel = 0
 
 
 func init_player() -> void:
@@ -37,7 +37,7 @@ func start_solo_game() -> void:
 	print("started singleplayer")
 	game_mode = "solo"
 	
-	currentLevel = LEVELS[0].instance()
+	currentLevel = LEVELS[level].instance()
 	add_child(currentLevel)
 	
 	$PlayerCamera._set_current(true)
@@ -106,30 +106,35 @@ func _on_HUD_update_highscore(score) -> void:
 
 
 func _on_TileMap_reached_100_steps(steps) -> void:
-	print("prev level" + str(level))
+#	print("prev level" + str(level))
 	if level < 1:
 		level += 1
-		print("leveled up: " + str(level))
+#		print("leveled up: " + str(level))
 		
-		print("current level path: " + currentLevel.get_path())
-		print("current level: " + str(get_child(get_children().size() - 1)))
-		get_child(get_children().size() - 1).free()
+#		print("current level path: " + currentLevel.get_path())
+#		print("current level: " + str(get_child(get_children().size() - 1)))
+		get_child(get_children().size() - 1).queue_free()
 		
 		currentLevel = LEVELS[level].instance()
-		print("current level path: " + currentLevel.get_path())
-		print("current level: " + str(currentLevel))
+#		print("current level path: " + currentLevel.get_path())
+#		print("current level: " + str(currentLevel))
 		add_child(currentLevel)
 		
 		var playerPos = $PlayerBody.position
+		$MusicPlayer.next_level()
 		$PlayerBody.next_level(playerPos)
 		$PlayerCamera.next_level()
-		$MusicPlayer.next_level()
 		
-		print("Player children: " + str(get_children()))
+#		print("Player children: " + str(get_children()))
 
 
 func _on_PlayerBody_restarted(spawn, lvl) -> void:
 	self.level = 0
+	
+	get_child(get_children().size() - 1).queue_free()
+	currentLevel = LEVELS[level].instance()
+	add_child(currentLevel)
+	
 	$TileMap.reset(spawn)
 	$PlayerCamera.reset(spawn)
 	$HUD.reset(spawn)

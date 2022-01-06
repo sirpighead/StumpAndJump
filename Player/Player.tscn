@@ -93,6 +93,8 @@ stream = ExtResource( 7 )
 volume_db = -25.0
 script = ExtResource( 6 )
 
+[node name="MusicTween" type="Tween" parent="MusicPlayer"]
+
 [node name="sfx" type="Node2D" parent="."]
 scale = Vector2( 2, 1.5 )
 script = ExtResource( 14 )
@@ -116,6 +118,8 @@ volume_db = -10.0
 [node name="bloop5" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource( 16 )
 volume_db = -10.0
+
+[node name="BackgroundTween" type="Tween" parent="."]
 
 [connection signal="update_highscore" from="." to="." method="_on_Player_update_highscore"]
 [connection signal="missed_next_tile" from="TileMap" to="PlayerCamera" method="_on_TileMap_missed_next_tile"]

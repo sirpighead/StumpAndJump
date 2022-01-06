@@ -14,7 +14,7 @@ motion_scale = Vector2( 0.15, 0.15 )
 [node name="Techno" type="Sprite" parent="sky"]
 position = Vector2( 0.00062831, -946.861 )
 rotation = -1.57079
-scale = Vector2( 2.15434, 2.5 )
+scale = Vector2( 2.168, 2.4872 )
 texture = ExtResource( 1 )
 
 [node name="backclouds" type="ParallaxLayer" parent="."]
