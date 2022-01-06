@@ -19,6 +19,10 @@ func reset(spawn) -> void:
 	limit_bottom = 100000
 	limit_top = -11260
 	self.position = spawn
+	
+	yield(get_tree(), "idle_frame")
+	set_v_drag_enabled(true)
+	set_h_drag_enabled(true)
 	set_enable_follow_smoothing(true)
 
 
