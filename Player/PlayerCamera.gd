@@ -8,7 +8,7 @@ func _on_TileMap_missed_next_tile(_score) -> void:
 func _on_PlayerBody_player_moved(_direction, position) -> void:
 	if not falling:
 		self.position = position
-		print("camera pos: " + str(position))
+#		print("camera pos: " + str(position))
 
 
 func reset(spawn) -> void:

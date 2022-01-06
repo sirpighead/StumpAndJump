@@ -8,6 +8,7 @@ var backgrounds = [
 
 func _ready() -> void:
 	$sky/Techno.hide()
+	$sky/Techno.position = Vector2(0,-(2*1280))
 
 
 func next_level():

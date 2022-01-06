@@ -100,14 +100,16 @@ func start_game(gm) -> void:
 
 func _on_TileMap_missed_next_tile(_score) -> void:
 	falling = true
-	rpc("set_physicis_process", true)
+	if not game_mode == "solo" or not game_mode == "puppet":
+		rpc("set_physicis_process", true)
 
 
 func _on_HUD_restart_game() -> void:
 	self.position = spawnPoint
 	falling = false
 	$Sprite.set_flip_h(false)
-	if not game_mode == "puppet": emit_signal("restarted", spawnPoint, level)
+	if not game_mode == "puppet": 
+		emit_signal("restarted", spawnPoint, level)
 	
 	level = 1
 
